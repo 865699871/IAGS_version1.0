@@ -1,0 +1,95 @@
+from util.chromosomeRearrangementPainting import plotChrsRearrangement
+
+"""
+Chromosomes painting for Papaver in evolution landscape. 
+result in outdutdata/Papaver/plot
+"""
+
+colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D','#94B51E']
+
+block_length_file = 'D:/InferAncestorGenome/realData/' \
+                    'IAGS_version1.0/inputdata/Papaver/blockindex.genenumber'
+target_species_block_file = 'D:/InferAncestorGenome/realData/IAGS_version1.0/' \
+                            'outputdata/Papaver/Ancestor1/Ancestor1.block'
+target_species_name = 'Ancestor1'
+target_species_copy_number = 1
+
+
+"""
+Ancestor 1 -> P. rhoeas
+"""
+rearranged_species_block_file = 'D:/InferAncestorGenome/' \
+                                'realData/IAGS_version1.0/' \
+                                'inputdata/Papaver/PR.final.block'
+rearranged_species_name = 'P.rhoeas'
+rearranged_species_copy_number = 1
+
+outdir = 'D:/InferAncestorGenome/realData/' \
+         'IAGS_version1.0/outputdata/Papaver/plot/'
+plotChrsRearrangement(block_length_file,
+                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
+                          target_species_block_file,target_species_name,target_species_copy_number,
+                          colorlist,outdir)
+
+"""
+Ancestor 1 -> Ancestor 2
+"""
+rearranged_species_block_file = 'D:/InferAncestorGenome/realData/IAGS_version1.0/' \
+                                'outputdata/Papaver/Ancestor2/Ancestor2.block'
+rearranged_species_name = 'Ancestor2'
+rearranged_species_copy_number = 2
+
+outdir = 'D:/InferAncestorGenome/realData/' \
+         'IAGS_version1.0/outputdata/Papaver/plot/'
+plotChrsRearrangement(block_length_file,
+                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
+                          target_species_block_file,target_species_name,target_species_copy_number,
+                          colorlist,outdir)
+
+"""
+Ancestor 1 -> Ancestor 3
+"""
+rearranged_species_block_file = 'D:/InferAncestorGenome/realData/IAGS_version1.0/' \
+                                'outputdata/Papaver/Ancestor3/Ancestor3.block'
+rearranged_species_name = 'Ancestor3'
+rearranged_species_copy_number = 2
+
+outdir = 'D:/InferAncestorGenome/realData/' \
+         'IAGS_version1.0/outputdata/Papaver/plot/'
+plotChrsRearrangement(block_length_file,
+                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
+                          target_species_block_file,target_species_name,target_species_copy_number,
+                          colorlist,outdir)
+
+
+"""
+Ancestor 1 -> P. somniferum
+"""
+rearranged_species_block_file = 'D:/InferAncestorGenome/' \
+                                'realData/IAGS_version1.0/' \
+                                'inputdata/Papaver/PS.final.block'
+rearranged_species_name = 'P.somniferum'
+rearranged_species_copy_number = 2
+
+outdir = 'D:/InferAncestorGenome/realData/' \
+         'IAGS_version1.0/outputdata/Papaver/plot/'
+plotChrsRearrangement(block_length_file,
+                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
+                          target_species_block_file,target_species_name,target_species_copy_number,
+                          colorlist,outdir)
+
+"""
+Ancestor 1 -> P. setigerum
+"""
+rearranged_species_block_file = 'D:/InferAncestorGenome/' \
+                                'realData/IAGS_version1.0/' \
+                                'inputdata/Papaver/PT.final.block'
+rearranged_species_name = 'P.setigerum'
+rearranged_species_copy_number = 4
+
+outdir = 'D:/InferAncestorGenome/realData/' \
+         'IAGS_version1.0/outputdata/Papaver/plot/'
+plotChrsRearrangement(block_length_file,
+                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
+                          target_species_block_file,target_species_name,target_species_copy_number,
+                          colorlist,outdir)
