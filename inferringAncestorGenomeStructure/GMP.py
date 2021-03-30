@@ -1,11 +1,9 @@
 import gurobipy as gp
 from gurobipy import *
 import pandas as pd
-import numpy as np
 import copy
 from dataSturcture.adjacencyMatrix import AdjacencyMatrix
-from util.transformToAdjacency import transformToAdjacency
-import cmath
+
 
 class GMP:
     def __init__(self, adjacency_file,target_copy_number=1):

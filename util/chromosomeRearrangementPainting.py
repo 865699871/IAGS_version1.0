@@ -77,6 +77,20 @@ def plotChrsRearrangement(block_length_file,
                           rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
                           target_species_block_file,target_species_name,target_species_copy_number,
                           colorlist,outdir):
+    """
+    Chromosomes rearrangement paint.
+    First matching two block sequence and then show the chromosome change in rearranged_species
+
+    :param block_length_file: a table recorded each block length (gene number)
+    :param rearranged_species_block_file: block sequence for rearranged species which is species with rearrangement
+    :param rearranged_species_name: rearranged species name
+    :param rearranged_species_copy_number: rearranged species copy number
+    :param target_species_block_file: block sequence for target species
+    :param target_species_name: target species name
+    :param target_species_copy_number: target species copy number
+    :param colorlist: color for chromosomes in target species
+    :param outdir: output directory
+    """
     mo = BlockMatchingOptimization(rearranged_species_block_file,
                                    target_species_block_file,
                                    matching_dim1=rearranged_species_copy_number,
@@ -93,27 +107,6 @@ def plotChrsRearrangement(block_length_file,
                 block_length_file, colorlist, outdir,
                     rearranged_species_name,target_species_name)
 
-
-
-colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D',
-             '#94B51E','#000000','#A9A9A9','#62C1BD','#FF8C00','#4169E1']
-
-block_length_file = 'D:/InferAncestorGenome/realData/' \
-                    'IAGS_version1.0/inputdata/Papaver/blockindex.genenumber'
-rearranged_species_block_file = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/' \
-                                'Papaver/Ancestor2/Ancestor2.block'
-rearranged_species_name = 'Ancestor2'
-rearranged_species_copy_number = 2
-target_species_block_file = 'D:/InferAncestorGenome/realData/IAGS_version1.0/' \
-                            'outputdata/Papaver/Ancestor1/Ancestor1.block'
-target_species_name = 'Ancestor1'
-target_species_copy_number = 1
-outdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/' \
-         'outputdata/Papaver/Ancestor2/'
-plotChrsRearrangement(block_length_file,
-                          rearranged_species_block_file,rearranged_species_name,rearranged_species_copy_number,
-                          target_species_block_file,target_species_name,target_species_copy_number,
-                          colorlist,outdir)
 
 
 
