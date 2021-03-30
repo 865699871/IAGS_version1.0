@@ -62,7 +62,9 @@ def calculate(sp1_file,sp2_file):
 
 def calculateFissionAndFussions(species1_file,species2_file,sp1_copy_number,sp2_copy_number,outdir):
     """
-    calculate shuffling events like fissions and fusions, copy number of species 2 should no larger than species 1.
+    Calculating shuffling events like fissions and fusions.
+    Species 1 is descendant and species 2 is ancestor.
+    Copy number of species 2 should no larger than species 1.
     Firstly, the copy number of species 2 should amplify to species 1
     Then, using BMO to find matching relation between both species
     Finally, counting shuffling events.
