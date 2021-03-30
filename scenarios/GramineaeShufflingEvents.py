@@ -4,15 +4,17 @@ from util.calculateFissionsAndFusions import calculateFissionAndFussions
 Calculating Fissions and Fusions for Gramineae in evolution landscape. 
 result in outdutdata/Gramineae
 """
-outfile = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/shufflingEvents.txt'
+path = 'D:/InferAncestorGenome/realData'
+
+outfile = path + '/IAGS_version1.0/outputdata/Gramineae/shufflingEvents.txt'
 outfile = open(outfile,'w')
 
 
 """
 Ancestor 1 -> O. sativa
 """
-species_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-ancestor1_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
+species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 
 descendant_file = species_block_sequence_dir + 'Rice.final.block'
 ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
@@ -24,8 +26,8 @@ outfile.write('Ancestor 1 -> O. sativa\n' +
 """
 Ancestor 1 -> Ancestor 2
 """
-ancestor2_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
-ancestor1_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
+ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
+ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 
 descendant_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
 ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
@@ -37,8 +39,8 @@ outfile.write('Ancestor 1 -> Ancestor 2\n' +
 """
 Ancestor 1 -> Ancestor 3
 """
-ancestor3_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
-ancestor1_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
+ancestor3_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
+ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 
 descendant_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
 ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
@@ -50,8 +52,8 @@ outfile.write('Ancestor 1 -> Ancestor 3\n' +
 """
 Ancestor 2 -> T. elongatum
 """
-species_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-ancestor2_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
+species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
 
 descendant_file = species_block_sequence_dir + 'Telongatum.final.block'
 ancestor_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
@@ -63,8 +65,8 @@ outfile.write('Ancestor 2 -> T. elongatum\n' +
 """
 Ancestor 2 -> B. distachyon
 """
-species_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-ancestor2_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
+species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
 
 descendant_file = species_block_sequence_dir + 'Brachy.final.block'
 ancestor_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
@@ -76,8 +78,8 @@ outfile.write('Ancestor 2 -> B. distachyon\n' +
 """
 Ancestor 3 -> S. bicolor
 """
-species_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-ancestor3_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
+species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+ancestor3_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
 
 descendant_file = species_block_sequence_dir + 'Sorghum.final.block'
 ancestor_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
@@ -89,8 +91,8 @@ outfile.write('Ancestor 3 -> S. bicolorn\n' +
 """
 Ancestor 3 -> Ancestor 4
 """
-ancestor4_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
-ancestor3_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
+ancestor4_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
+ancestor3_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
 
 descendant_file = ancestor4_block_sequence_dir + 'Ancestor4.cutcycle.block'
 ancestor_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
@@ -102,8 +104,8 @@ outfile.write('Ancestor 3 -> Ancestor 4\n' +
 """
 Ancestor 4 -> Z. mays
 """
-species_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-ancestor4_block_sequence_dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
+species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+ancestor4_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
 
 descendant_file = species_block_sequence_dir + 'Maize.final.block'
 ancestor_file = ancestor4_block_sequence_dir + 'Ancestor4.cutcycle.block'

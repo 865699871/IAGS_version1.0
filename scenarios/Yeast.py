@@ -25,7 +25,9 @@ def mergeblock(filelist,outfile):
         outfile.write(i)
     outfile.close()
 
-workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Yeast/'
+path = 'D:/InferAncestorGenome/realData'
+
+workdir = path + '/IAGS_version1.0/inputdata/Yeast/'
 nonWGD_yeast = [workdir + 'gossypii.final.block',
                 workdir + 'kluyveri.final.block',
                 workdir + 'lactis.final.block',
@@ -41,7 +43,7 @@ WGD_yeast = [workdir + 'castellii.final.block',
 merged_WGDspecies_file = workdir + 'merged_WGD_yeast.block'
 mergeblock(WGD_yeast,merged_WGDspecies_file)
 
-outdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Yeast/'
+outdir = path + '/IAGS_version1.0/outputdata/Yeast/'
 ancestor_name = 'preWGD_yeast'
 # three duplicated yeasts and six non duplicated yeasts
 GGHPmode(dup_child_file=merged_WGDspecies_file,

@@ -4,13 +4,14 @@ from util.statisticsAdjacency import statisticsAdjacenciesInformation
 Inferring ancestor species for Brassica. GMP mode
 result in outdutdata/Brassica
 """
+path = 'D:/InferAncestorGenome/realData'
 
-workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/'
+workdir = path + '/IAGS_version1.0/inputdata/Brassica/'
 species_block_filelist = [workdir + 'Oleracea.final.block',
                           workdir + 'Rapa.final.block',
                           workdir + 'Nigra.final.block']
 ancestor_name = 'Brassica'
-outdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Brassica/'
+outdir = path + '/IAGS_version1.0/outputdata/Brassica/'
 
 GMPmode(species_file_list=species_block_filelist,
         outdir=outdir,

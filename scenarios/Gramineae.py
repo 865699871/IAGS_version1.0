@@ -10,9 +10,10 @@ Ancestor 2: Multi-copy GMP mode, result in outdutdata/Gramineae/Ancestor2
 Ancestor 1: Multi-copy GMP mode, result in outdutdata/Gramineae/Ancestor1
 
 """
+path = 'D:/InferAncestorGenome/realData'
 
-workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/'
-outdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/'
+workdir = path + '/IAGS_version1.0/inputdata/Gramineae/'
+outdir = path + '/IAGS_version1.0/outputdata/Gramineae/'
 
 """
 Inferring ancestor species for Gramineae species. 
@@ -20,7 +21,7 @@ Ancestor 4
 """
 dup_child_file = workdir + 'Maize.final.block'
 outgroup_file = workdir + 'Sorghum.final.block'
-outAncestor4dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
+outAncestor4dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
 dup_copy_number = 4
 out_copy_number = 2
 ancestor_target_copy_number = 2
@@ -49,7 +50,7 @@ species_file_list = [workdir + 'Sorghum.final.block',
                      workdir + 'Rice.final.block']
 guided_species_for_matching = workdir + 'Sorghum.final.block'
 ancestor_target_copy_number = 2
-outAncestor3dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
+outAncestor3dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
 ancestor_name = 'Ancestor3'
 MultiCopyGMPmode(species_file_list,outAncestor3dir,guided_species_for_matching,ancestor_name,ancestor_target_copy_number)
 
@@ -75,7 +76,7 @@ species_file_list = [workdir + 'Brachy.final.block',
                      workdir + 'Rice.final.block']
 guided_species_for_matching = workdir + 'Brachy.final.block'
 ancestor_target_copy_number = 2
-outAncestor2dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
+outAncestor2dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
 ancestor_name = 'Ancestor2'
 MultiCopyGMPmode(species_file_list,outAncestor2dir,guided_species_for_matching,ancestor_name,ancestor_target_copy_number)
 
@@ -101,7 +102,7 @@ species_file_list = [workdir + 'Rice.final.block',
                      outAncestor3dir + 'Ancestor3.block']
 guided_species_for_matching = workdir + 'Rice.final.block'
 ancestor_target_copy_number = 2
-outAncestor1dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
+outAncestor1dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 ancestor_name = 'Ancestor1'
 MultiCopyGMPmode(species_file_list,outAncestor1dir,guided_species_for_matching,ancestor_name,ancestor_target_copy_number)
 

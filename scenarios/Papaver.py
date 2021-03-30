@@ -10,6 +10,7 @@ Ancestor 1: GGHP mode, result in outdutdata/Papaver/Ancestor1
 Ancestor 2: Multi-copy GMP mode, Ancestor1 should be doubled,result in outdutdata/Papaver/Ancestor2
 """
 
+
 def doubled(infile,outfile):
     outfile = open(outfile,'w')
     sequence = []
@@ -24,8 +25,10 @@ def doubled(infile,outfile):
     for i in sequence:
         outfile.write(i)
 
-workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Papaver/'
-outdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Papaver/'
+path = 'D:/InferAncestorGenome/realData'
+
+workdir = path + '/IAGS_version1.0/inputdata/Papaver/'
+outdir = path + '/IAGS_version1.0/outputdata/Papaver/'
 
 """
 Inferring ancestor species for Papaver species. 
@@ -33,7 +36,7 @@ Ancestor 3
 """
 dup_child_file = workdir + 'PT.final.block'
 outgroup_file = workdir + 'PS.final.block'
-outAncestor3dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Papaver/Ancestor3/'
+outAncestor3dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor3/'
 dup_copy_number = 4
 out_copy_number = 2
 ancestor_target_copy_number = 2
@@ -59,7 +62,7 @@ Ancestor 1
 """
 dup_child_file = workdir + 'PS.final.block'
 outgroup_file = workdir + 'PR.final.block'
-outAncestor1dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Papaver/Ancestor1/'
+outAncestor1dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor1/'
 dup_copy_number = 2
 out_copy_number = 1
 ancestor_name = 'Ancestor1'
@@ -91,7 +94,7 @@ species_file_list = [workdir + 'PS.final.block',
                      outAncestor3dir + 'Ancestor3.block',
                      outAncestor1dir + 'Ancestor1.doubled.block']
 guided_species_for_matching = workdir + 'PS.final.block'
-outAncestor2dir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/outputdata/Papaver/Ancestor2/'
+outAncestor2dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor2/'
 ancestor_target_copy_number = 2
 ancestor_name = 'Ancestor2'
 MultiCopyGMPmode(species_file_list,outAncestor2dir,guided_species_for_matching,
