@@ -205,7 +205,7 @@ def sequence2adjacency(sequence):
 
 
 # simulate with some changed adjacencies in each species
-def simulateGMP_CRBs(outdir, change_adjacency_number = 20):
+def simulateGMP_CRBs(outdir, change_adjacency_number):
     ancestor_sequence_file = outdir + '/ancestor.sequence'
     chromosome_number = 5
     block_number = 100

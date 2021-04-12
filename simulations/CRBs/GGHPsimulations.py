@@ -221,7 +221,7 @@ def buildSimulatedGGHP_CRBs(adjacencises, save_final_species_adjacencies, change
                                 divergence_level, current_level + 1)
 
 # simulate with some changed adjacencies in each species
-def simulateGGHP_CRBs(outdir, change_adjacency_number = 20):
+def simulateGGHP_CRBs(outdir, change_adjacency_number):
     ancestor_sequence_file = outdir + '/ancestor.sequence'
     chromosome_number = 5
     block_number = 100

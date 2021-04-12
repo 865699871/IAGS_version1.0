@@ -194,7 +194,7 @@ def buildSimulatedMultiGMP_CRBs(adjacencises, save_final_species_adjacencies, ch
                                     divergence_level, current_level + 1)
 
 # simulate with some changed adjacencies in each species
-def simulateMultiGMP_CRBs(outdir, change_adjacency_number = 20):
+def simulateMultiGMP_CRBs(outdir, change_adjacency_number):
     ancestor_sequence_file = outdir + 'ancestor.sequence'
     chromosome_number = 5
     block_number = 50
