@@ -224,7 +224,7 @@ def statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number,ancetsor
     :param speciesAndCopyList: a set of related species using to infer this ancestor.
     Each one contain three items with block sequence file, target copy number and species name.
     :param outdir: output directory
-    :param mode_type: calculation modes, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP.
+    :param mode_type: calculation models, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP.
     :param cutcycle: parameter for whether cut cycle.
     If ancestor contains cycle block sequence, we cut the minimum support adjacency.
     :param getCRBratio: parameter for whether calculted CRB ratio and estimated accuracy.

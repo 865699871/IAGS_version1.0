@@ -1,0 +1,5 @@
+Ancestor 8 fissions: 0	fusions: 0
+Ancestor 5 fissions: 0	fusions: 0
+Ancestor 6 fissions: 0	fusions: 0
+Ancestor 2 fissions: 0	fusions: 0
+Ancestor 3 fissions: 0	fusions: 0

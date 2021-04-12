@@ -2,9 +2,9 @@ from util.transformToAdjacency import transformToAdjacency
 from inferringAncestorGenomeStructure.GMP import GMP
 
 
-def GMPmode(species_file_list, outdir, ancestor_name):
+def GMPmodel(species_file_list, outdir, ancestor_name):
     """
-    Inferring ancestor species with GMP mode. All species block copy number are only one.
+    Inferring ancestor species with GMP model. All species block copy number are only one.
 
     :param species_file_list: input species block sequence list.
     :param outdir: output directory

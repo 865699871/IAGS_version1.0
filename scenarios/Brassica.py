@@ -1,7 +1,7 @@
-from modes.GMPmode import GMPmode
+from models.GMPmodel import GMPmodel
 from util.statisticsAdjacency import statisticsAdjacenciesInformation
 """
-Inferring ancestor species for Brassica. GMP mode
+Inferring ancestor species for Brassica. GMP model
 result in outdutdata/Brassica
 """
 path = 'D:/InferAncestorGenome/realData'
@@ -13,15 +13,15 @@ species_block_filelist = [workdir + 'Oleracea.final.block',
 ancestor_name = 'Brassica'
 outdir = path + '/IAGS_version1.0/outputdata/Brassica/'
 
-GMPmode(species_file_list=species_block_filelist,
-        outdir=outdir,
-        ancestor_name=ancestor_name)
+GMPmodel(species_file_list=species_block_filelist,
+         outdir=outdir,
+         ancestor_name=ancestor_name)
 
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1
-speciesAndCopyList = [[workdir + 'Oleracea.final.block',1,'Oleracea'],
-                      [workdir + 'Rapa.final.block',1,'Rapa'],
-                      [workdir + 'Nigra.final.block',1,'Nigra']]
+speciesAndCopyList = [[workdir + 'Oleracea.final.block',ancestor_copy_number,'Oleracea'],
+                      [workdir + 'Rapa.final.block',ancestor_copy_number,'Rapa'],
+                      [workdir + 'Nigra.final.block',ancestor_copy_number,'Nigra']]
 
 mode_type = 'GMP'
 statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_name,

@@ -1,8 +1,8 @@
-from modes.GGHPmode import GGHPmode
+from models.GGHPmodel import GGHPmodel
 from util.statisticsAdjacency import statisticsAdjacenciesInformation
 
 """
-Inferring ancestor species for Yeast species. GGHP mode
+Inferring ancestor species for Yeast species. GGHP model
 nonWGD and WGD yeast should be merged respectively.
 
 result in outdutdata/Yeast
@@ -46,12 +46,12 @@ mergeblock(WGD_yeast,merged_WGDspecies_file)
 outdir = path + '/IAGS_version1.0/outputdata/Yeast/'
 ancestor_name = 'preWGD_yeast'
 # three duplicated yeasts and six non duplicated yeasts
-GGHPmode(dup_child_file=merged_WGDspecies_file,
-         outgroup_file=merged_nonWGDspecies_file,
-         outdir=outdir,
-         ancestor_name=ancestor_name,
-         dup_copy_number=2+2+2,
-         out_copy_number=1+1+1+1+1+1)
+GGHPmodel(dup_child_file=merged_WGDspecies_file,
+          outgroup_file=merged_nonWGDspecies_file,
+          outdir=outdir,
+          ancestor_name=ancestor_name,
+          dup_copy_number=2+2+2,
+          out_copy_number=1+1+1+1+1+1)
 
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1

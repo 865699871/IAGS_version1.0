@@ -4,10 +4,10 @@ from inferringAncestorGenomeStructure.BlockMatchingOptimization import BlockMatc
 from inferringAncestorGenomeStructure.EndpointMatchingOptimization import EndpointMatchingOptimization
 
 
-def MultiCopyGGHPmode(dup_child_file, outgroup_file, outdir,
-                      ancestor_name, dup_copy_number, out_copy_number, ancestor_target_copy_number):
+def MultiCopyGGHPmodel(dup_child_file, outgroup_file, outdir,
+                       ancestor_name, dup_copy_number, out_copy_number, ancestor_target_copy_number):
     """
-    Inferring ancestor species with Multi-copy GGHP mode. Ancestor with multi-copy.
+    Inferring ancestor species with Multi-copy GGHP model. Ancestor with multi-copy.
     We first use GGHP to get block adjacencies and
     then matching (BMO) dup child species with itself.
     Finally, using EMO with self matched duplicated child to relabel block adjacencies getting block sequence

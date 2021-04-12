@@ -2,10 +2,10 @@ from util.transformToAdjacency import transformToAdjacency
 from inferringAncestorGenomeStructure.GGHP import GGHP
 
 
-def GGHPmode(dup_child_file, outgroup_file, outdir,
-             ancestor_name, dup_copy_number, out_copy_number):
+def GGHPmodel(dup_child_file, outgroup_file, outdir,
+              ancestor_name, dup_copy_number, out_copy_number):
     """
-    Inferring ancestor species with GGHP mode. Ancestor block copy number is only one.
+    Inferring ancestor species with GGHP model. Ancestor block copy number is only one.
     The block copy number of duplicated child species is dup_copynumber.
     The block copy number of outgroup speices is out_copy_number.
     WGD for dup_child_file: dup_copy_number = 2, out_copy_number = 1 (basic GGHP)

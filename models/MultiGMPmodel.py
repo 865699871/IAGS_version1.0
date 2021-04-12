@@ -3,9 +3,9 @@ from inferringAncestorGenomeStructure.GMP import GMP
 from inferringAncestorGenomeStructure.EndpointMatchingOptimization import EndpointMatchingOptimization
 
 
-def MultiCopyGMPmode(species_file_list,outdir,guided_species_for_matching,ancestor_name,ancestor_target_copy_number):
+def MultiCopyGMPmodel(species_file_list, outdir, guided_species_for_matching, ancestor_name, ancestor_target_copy_number):
     """
-    Inferring ancestor species with Multi-copy GMP mode. Ancestor with multi-copy.
+    Inferring ancestor species with Multi-copy GMP model. Ancestor with multi-copy.
     All species shared duplication events and block cop number are ancestor_target_copy_number.
     We first use GMP to get block adjacencies and
     then matching (EMO) with a guided species to relabel block adjacencies getting block sequence
