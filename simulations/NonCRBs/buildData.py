@@ -220,12 +220,12 @@ def buildNoCRBSimulations(prefix_adjacencies,
         for i in range(len(sub_species_2)):
             change_list = copy.deepcopy(sub_species_2[i][:-1])
             unchange = copy.deepcopy(sub_species_2[i][-1])
-            # 组成新的部分，从unchange中再分出拷贝数*2个part
+
             split_unchange = []
             for j in range(len(sub_species_2)*2):
                 split_unchange.append(copy.deepcopy(unchange[j * change_adjacency_number:(j + 1) * change_adjacency_number]))
             split_unchange.append(unchange[len(sub_species_2) * 2 * change_adjacency_number:])
-            # 加倍每次改变
+            # change adjacencies
             change_1 = i*len(sub_species_2)
             change_2 = i*len(sub_species_2) + 1
             new_change_list_copy1 = []
