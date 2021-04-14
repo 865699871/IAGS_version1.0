@@ -34,8 +34,17 @@ Containing the source code of four basic models for IAGS, including GMP, GGHP, M
 Including four utils for downstream analysis.
 
 ### inputdata
-Four real datasets used in out research, including block sequences for three Brassica, nine Yeast, five Gramineae and three Papaver species.
+Four real datasets used in our research, including block sequences for three Brassica, nine Yeast, five Gramineae and three Papaver species.
 
+### scenarios
+Pipline and example usages for four real datasets.
+
+### outputdata
+Output for four real datasets
+
+### simulations
+including Non-CRBs and CRBs simulations.
+ 
 
 
 
