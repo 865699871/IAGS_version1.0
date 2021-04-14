@@ -18,3 +18,22 @@ Development tool: Pycharm
 ## Usage
 Detailed instruction at docs UserGuide.pdf  
 Example usages in scenarios  
+
+## Introductions
+
+### dataSturcture
+Basic datastructure for IAGS.
+
+### inferringAncestorGenomeStructure
+Containing the source code of four formulations, including GMP, GGHP, BMO and EMO.
+
+### models
+Containing the source code of four basic models for IAGS, including GMP, GGHP, Multi-copy GMP and Multi-copy GGHP.
+
+### util
+Including four utils for downstream analysis.
+
+
+
+
+
