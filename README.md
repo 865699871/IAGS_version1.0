@@ -14,3 +14,7 @@ matplotlib  | 3.0.3 |
 Gurobi solver 9.0.2 (https://www.gurobi.com/ ) with Academic License.   
 Development environment: Windows 10  
 Development tool: Pycharm  
+
+## Usage
+Detailed instruction at docs UserGuide.pdf  
+Example usages in scenarios  
