@@ -1,1 +1,2 @@
-# IAGS_version1.0
+# IAGS: Inferring Ancestor Genome Structure in a wide range of evolutionary scenarios
+
