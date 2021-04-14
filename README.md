@@ -46,7 +46,7 @@ Pipline and example usages for four real datasets.
 Output for four real datasets
 
 ### simulations
-including Non-CRBs and CRBs simulations.
+Including Non-CRBs and CRBs simulations.
  
 
 ## Contact
