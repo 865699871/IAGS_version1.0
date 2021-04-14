@@ -22,7 +22,7 @@ Example usages in scenarios
 ## Introductions
 
 ### dataSturcture
-Basic datastructure for IAGS.
+Basic data structure for IAGS.
 
 ### inferringAncestorGenomeStructure
 Containing the source code of four formulations, including GMP, GGHP, BMO and EMO.
@@ -31,7 +31,7 @@ Containing the source code of four formulations, including GMP, GGHP, BMO and EM
 Containing the source code of four basic models for IAGS, including GMP, GGHP, Multi-copy GMP and Multi-copy GGHP.
 
 ### util
-Including four utils for downstream analysis.
+Including utils for downstream analysis.
 
 ### inputdata
 Four real datasets used in our research, including block sequences for three Brassica, nine Yeast, five Gramineae and three Papaver species.
