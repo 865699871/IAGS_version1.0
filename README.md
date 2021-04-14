@@ -21,6 +21,9 @@ Example usages in scenarios
 
 ## Introductions
 
+### docs
+User guide
+
 ### dataSturcture
 Basic data structure for IAGS.
 
