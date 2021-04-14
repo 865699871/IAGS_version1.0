@@ -17,10 +17,16 @@ Ancestor 1 -> P. rhoeas
 species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Papaver/'
 ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor1/'
 
-descendant_file = species_block_sequence_dir + 'PR.final.block'
+descendant_file = species_block_sequence_dir + 'Prhoeas.final.block'
 ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
 
-fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,1,1,ancestor1_block_sequence_dir)
+descendant_copy_number = 1
+ancestor_copy_number = 1
+
+fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,
+                                               descendant_copy_number,ancestor_copy_number,
+                                               ancestor1_block_sequence_dir)
+
 outfile.write('Ancestor 1 -> P. rhoeas\n' +
               'fissions: '+ str(fissions)+'\t' + 'fusions: '+str(fusions)+'\n')
 
@@ -33,7 +39,12 @@ ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Papaver/Ances
 descendant_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
 ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
 
-fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,2,1,ancestor1_block_sequence_dir)
+descendant_copy_number = 2
+ancestor_copy_number = 1
+
+fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,
+                                               descendant_copy_number,ancestor_copy_number,
+                                               ancestor1_block_sequence_dir)
 outfile.write('Ancestor 1 -> Ancestor 2\n' +
               'fissions: '+ str(fissions)+'\t' + 'fusions: '+str(fusions)+'\n')
 
@@ -47,7 +58,12 @@ ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Papaver/Ances
 descendant_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
 ancestor_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
 
-fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,2,2,ancestor2_block_sequence_dir)
+descendant_copy_number = 2
+ancestor_copy_number = 2
+
+fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,
+                                               descendant_copy_number,ancestor_copy_number,
+                                               ancestor2_block_sequence_dir)
 outfile.write('Ancestor 2 -> Ancestor 3\n' +
               'fissions: '+ str(fissions)+'\t' + 'fusions: '+str(fusions)+'\n')
 
@@ -58,10 +74,15 @@ Ancestor 2 -> P. somniferum
 species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Papaver/'
 ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor2/'
 
-descendant_file = species_block_sequence_dir + 'PS.final.block'
+descendant_file = species_block_sequence_dir + 'Psomniferum.final.block'
 ancestor_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
 
-fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,2,2,ancestor2_block_sequence_dir)
+descendant_copy_number = 2
+ancestor_copy_number = 2
+
+fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,
+                                               descendant_copy_number,ancestor_copy_number,
+                                               ancestor2_block_sequence_dir)
 outfile.write('Ancestor 2 -> P. somniferum\n' +
               'fissions: '+ str(fissions)+'\t' + 'fusions: '+str(fusions)+'\n')
 
@@ -71,10 +92,14 @@ Ancestor 3 -> P. setigerum
 species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Papaver/'
 ancestor3_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor3/'
 
-descendant_file = species_block_sequence_dir + 'PT.final.block'
+descendant_file = species_block_sequence_dir + 'Psetigerum.final.block'
 ancestor_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
 
-fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,4,2,ancestor3_block_sequence_dir)
+descendant_copy_number = 4
+ancestor_copy_number = 2
+
+fissions,fusions = calculateFissionAndFussions(descendant_file,ancestor_file,
+                                               descendant_copy_number,ancestor_copy_number,ancestor3_block_sequence_dir)
 outfile.write('Ancestor 3 -> P. setigerum\n' +
               'fissions: '+ str(fissions)+'\t' + 'fusions: '+str(fusions)+'\n')
 outfile.close()

@@ -1,5 +1,4 @@
 def transformToAdjacency(file_list,outfile):
-    # 对自己连接自己的邻接进行替换，变成两个端粒
     outfile = open(outfile, 'w')
     for i in file_list:
         adjacency_list = []
@@ -40,7 +39,7 @@ def transformToAdjacency(file_list,outfile):
                     adjacency_list.append([last, '$'])
                 else:
                     adjacency_list.append([last, start])
-        # 将endpoint连接自己的情况进行替换
+
         new_adjacency_list = []
         for j in adjacency_list:
             if j[0] == j[1]:

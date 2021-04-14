@@ -19,7 +19,7 @@ target_species_copy_number = 1
 Ancestor 1 -> P. rhoeas
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Papaver/PR.final.block'
+                                'inputdata/Papaver/Prhoeas.final.block'
 rearranged_species_name = 'P.rhoeas'
 rearranged_species_copy_number = 1
 
@@ -62,7 +62,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> P. somniferum
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Papaver/PS.final.block'
+                                'inputdata/Papaver/Psomniferum.final.block'
 rearranged_species_name = 'P.somniferum'
 rearranged_species_copy_number = 2
 
@@ -76,7 +76,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> P. setigerum
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Papaver/PT.final.block'
+                                'inputdata/Papaver/Psetigerum.final.block'
 rearranged_species_name = 'P.setigerum'
 rearranged_species_copy_number = 4
 

@@ -7,9 +7,9 @@ result in outdutdata/Brassica
 path = 'D:/InferAncestorGenome/realData'
 
 workdir = path + '/IAGS_version1.0/inputdata/Brassica/'
-species_block_filelist = [workdir + 'Oleracea.final.block',
-                          workdir + 'Rapa.final.block',
-                          workdir + 'Nigra.final.block']
+species_block_filelist = [workdir + 'Boleracea.final.block',
+                          workdir + 'Brapa.final.block',
+                          workdir + 'Bnigra.final.block']
 ancestor_name = 'Brassica'
 outdir = path + '/IAGS_version1.0/outputdata/Brassica/'
 
@@ -19,9 +19,9 @@ GMPmodel(species_file_list=species_block_filelist,
 
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1
-speciesAndCopyList = [[workdir + 'Oleracea.final.block',ancestor_copy_number,'Oleracea'],
-                      [workdir + 'Rapa.final.block',ancestor_copy_number,'Rapa'],
-                      [workdir + 'Nigra.final.block',ancestor_copy_number,'Nigra']]
+speciesAndCopyList = [[workdir + 'Boleracea.final.block',ancestor_copy_number,'B.oleracea'],
+                      [workdir + 'Brapa.final.block',ancestor_copy_number,'B.rapa'],
+                      [workdir + 'Bnigra.final.block',ancestor_copy_number,'B.nigra']]
 
 mode_type = 'GMP'
 statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_name,

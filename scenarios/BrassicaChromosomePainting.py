@@ -18,7 +18,7 @@ target_species_copy_number = 1
 """
 Ancestor Brassica -> B. rapa
 """
-rearranged_species_block_file = path + '/IAGS_version1.0/inputdata/Brassica/Rapa.final.block'
+rearranged_species_block_file = path + '/IAGS_version1.0/inputdata/Brassica/Brapa.final.block'
 rearranged_species_name = 'B.rapa'
 rearranged_species_copy_number = 1
 
@@ -32,7 +32,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor Brassica -> B. oleracea
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Brassica/oleracea.final.block'
+                                'inputdata/Brassica/Boleracea.final.block'
 rearranged_species_name = 'B.oleracea'
 rearranged_species_copy_number = 1
 
@@ -46,7 +46,7 @@ plotChrsRearrangement(block_length_file,
 """
 Ancestor Brassica -> B. nigra
 """
-rearranged_species_block_file = path + '/IAGS_version1.0/inputdata/Brassica/nigra.final.block'
+rearranged_species_block_file = path + '/IAGS_version1.0/inputdata/Brassica/Bnigra.final.block'
 rearranged_species_name = 'B.nigra'
 rearranged_species_copy_number = 1
 

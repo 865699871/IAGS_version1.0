@@ -1,7 +1,7 @@
 Ancestor 1 -> O. sativa
 fissions: 2	fusions: 1
 Ancestor 1 -> Ancestor 2
-fissions: 7	fusions: 10
+fissions: 2	fusions: 1
 Ancestor 1 -> Ancestor 3
 fissions: 5	fusions: 6
 Ancestor 2 -> T. elongatum

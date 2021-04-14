@@ -33,8 +33,8 @@ workdir = path + '/IAGS_version1.0/inputdata/Papaver/'
 Inferring ancestor species for Papaver species. 
 Ancestor 3
 """
-dup_child_file = workdir + 'PT.final.block'
-outgroup_file = workdir + 'PS.final.block'
+dup_child_file = workdir + 'Psetigerum.final.block'
+outgroup_file = workdir + 'Psomniferum.final.block'
 outAncestor3dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor3/'
 dup_copy_number = 4
 out_copy_number = 2
@@ -46,8 +46,8 @@ MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor3dir,
 
 ancestor_file = outAncestor3dir + ancestor_name + '.block'
 speciesAndCopyList = [
-    [workdir + 'PT.final.block',dup_copy_number,'PT'],
-    [workdir + 'PS.final.block',out_copy_number,'PS']
+    [workdir + 'Psetigerum.final.block',dup_copy_number,'P.setigerum'],
+    [workdir + 'Psomniferum.final.block',out_copy_number,'P.somniferum']
 ]
 
 mode_type = 'MultiCopyGGHP'
@@ -59,8 +59,8 @@ statisticsAdjacenciesInformation(ancestor_file,ancestor_target_copy_number, ance
 Inferring ancestor species for Papaver species. 
 Ancestor 1
 """
-dup_child_file = workdir + 'PS.final.block'
-outgroup_file = workdir + 'PR.final.block'
+dup_child_file = workdir + 'Psomniferum.final.block'
+outgroup_file = workdir + 'Prhoeas.final.block'
 outAncestor1dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor1/'
 dup_copy_number = 2
 out_copy_number = 1
@@ -76,8 +76,8 @@ GGHPmodel(dup_child_file=dup_child_file,
 ancestor_file = outAncestor1dir + ancestor_name + '.block'
 ancestor_copy_number = 1
 speciesAndCopyList = [
-    [workdir + 'PS.final.block',dup_copy_number,'PS'],
-    [workdir + 'PR.final.block',out_copy_number,'PR']
+    [workdir + 'Psomniferum.final.block',dup_copy_number,'P.somniferum'],
+    [workdir + 'Prhoeas.final.block',out_copy_number,'P.rhoeas']
 ]
 mode_type = 'GGHP'
 statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_name,
@@ -89,10 +89,10 @@ Inferring ancestor species for Papaver species.
 Ancestor 2
 """
 doubled(outAncestor1dir + 'Ancestor1.block',outAncestor1dir + 'Ancestor1.doubled.block')
-species_file_list = [workdir + 'PS.final.block',
+species_file_list = [workdir + 'Psomniferum.final.block',
                      outAncestor3dir + 'Ancestor3.block',
                      outAncestor1dir + 'Ancestor1.doubled.block']
-guided_species_for_matching = workdir + 'PS.final.block'
+guided_species_for_matching = workdir + 'Psomniferum.final.block'
 outAncestor2dir = path + '/IAGS_version1.0/outputdata/Papaver/Ancestor2/'
 ancestor_target_copy_number = 2
 ancestor_name = 'Ancestor2'
@@ -101,7 +101,7 @@ MultiCopyGMPmodel(species_file_list, outAncestor2dir, guided_species_for_matchin
 
 ancestor_file = outAncestor2dir + ancestor_name + '.block'
 speciesAndCopyList = [
-    [workdir + 'PS.final.block',ancestor_target_copy_number,'PS'],
+    [workdir + 'Psomniferum.final.block',ancestor_target_copy_number,'P.somniferum'],
     [outAncestor3dir + 'Ancestor3.block',ancestor_target_copy_number,'Ancestor3'],
     [outAncestor1dir + 'Ancestor1.doubled.block',ancestor_target_copy_number,'Ancestor1.doubled']
 ]

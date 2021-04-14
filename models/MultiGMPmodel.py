@@ -8,11 +8,12 @@ def MultiCopyGMPmodel(species_file_list, outdir, guided_species_for_matching, an
     Inferring ancestor species with Multi-copy GMP model. Ancestor with multi-copy.
     All species shared duplication events and block cop number are ancestor_target_copy_number.
     We first use GMP to get block adjacencies and
-    then matching (EMO) with a guided species to relabel block adjacencies getting block sequence
+    then matching (EMO) with a guided child species to relabel block adjacencies getting block sequence
 
-    :param species_file_list: input species block sequence list.
+    :param species_file_list: input species block sequence file list.
     :param outdir: output directory.
-    :param guided_species_for_matching:
+    :param guided_species_for_matching: a guided child species block sequence file for EMO
+    to transform block adjacencies to sequences.
     :param ancestor_name: ancestor name
     :param ancestor_target_copy_number: ancestor species target copy number copy number.
     """

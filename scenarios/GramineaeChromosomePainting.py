@@ -19,7 +19,7 @@ target_species_copy_number = 2
 Ancestor 1 -> O. sativa
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Gramineae/Rice.final.block'
+                                'inputdata/Gramineae/Osativa.final.block'
 rearranged_species_name = 'O.sativa'
 rearranged_species_copy_number = 2
 
@@ -75,7 +75,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> B. distachyon
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Gramineae/Brachy.final.block'
+                                'inputdata/Gramineae/Bdistachyon.final.block'
 rearranged_species_name = 'B.distachyon'
 rearranged_species_copy_number = 2
 
@@ -90,7 +90,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> S. bicolor
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Gramineae/Sorghum.final.block'
+                                'inputdata/Gramineae/Sbicolor.final.block'
 rearranged_species_name = 'S.bicolor'
 rearranged_species_copy_number = 2
 
@@ -120,7 +120,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> Z. mays
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Gramineae/Maize.final.block'
+                                'inputdata/Gramineae/Zmays.final.block'
 rearranged_species_name = 'Z.mays'
 rearranged_species_copy_number = 4
 

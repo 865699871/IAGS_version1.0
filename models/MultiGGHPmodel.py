@@ -18,7 +18,7 @@ def MultiCopyGGHPmodel(dup_child_file, outgroup_file, outdir,
     :param ancestor_name: ancestor name
     :param dup_copy_number: the block copy number for duplicated child species
     :param out_copy_number: the block copy number for outgroup speices
-    :param ancestor_target_copy_number: ancestor species target copy number copy number.
+    :param ancestor_target_copy_number: target copy number of ancestor species.
     """
     adj_file = outdir + ancestor_name + '.adj'
     filelist = [dup_child_file,

@@ -20,7 +20,7 @@ target_species_copy_number = 1
 preWGD yeast -> N. castellii
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/castellii.final.block'
+                                'inputdata/Yeast/Ncastellii.final.block'
 rearranged_species_name = 'N.castellii'
 rearranged_species_copy_number = 2
 
@@ -34,7 +34,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> S. cerevisiae
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/R64.final.block'
+                                'inputdata/Yeast/Scerevisiae.final.block'
 rearranged_species_name = 'S.cerevisiae'
 rearranged_species_copy_number = 2
 
@@ -48,7 +48,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> K.naganishii
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/naganishii.final.block'
+                                'inputdata/Yeast/Knaganishii.final.block'
 rearranged_species_name = 'K.naganishii'
 rearranged_species_copy_number = 2
 
@@ -63,7 +63,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> Z. rouxii
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/rouxii.final.block'
+                                'inputdata/Yeast/Zrouxii.final.block'
 rearranged_species_name = 'Z.rouxii'
 rearranged_species_copy_number = 1
 
@@ -78,7 +78,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> L.kluyveri
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/kluyveri.final.block'
+                                'inputdata/Yeast/Lkluyveri.final.block'
 rearranged_species_name = 'L.kluyveri'
 rearranged_species_copy_number = 1
 
@@ -93,7 +93,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> L.waltii
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/waltii.final.block'
+                                'inputdata/Yeast/Lwaltii.final.block'
 rearranged_species_name = 'L.waltii'
 rearranged_species_copy_number = 1
 
@@ -108,7 +108,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> L.thermotolerans
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/thermotolerans.final.block'
+                                'inputdata/Yeast/Lthermotolerans.final.block'
 rearranged_species_name = 'L.thermotolerans'
 rearranged_species_copy_number = 1
 
@@ -122,7 +122,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> E. gossypii
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/gossypii.final.block'
+                                'inputdata/Yeast/Egossypii.final.block'
 rearranged_species_name = 'E.gossypii'
 rearranged_species_copy_number = 1
 
@@ -137,7 +137,7 @@ plotChrsRearrangement(block_length_file,
 preWGD yeast -> K. lactis
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'inputdata/Yeast/lactis.final.block'
+                                'inputdata/Yeast/Klactis.final.block'
 rearranged_species_name = 'K.lactis'
 rearranged_species_copy_number = 1
 

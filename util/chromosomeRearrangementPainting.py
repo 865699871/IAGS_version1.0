@@ -49,6 +49,8 @@ def plotBarplot(matched_target_species_block_file, matched_rearranged_species_bl
             ax.add_patch(rect)
     plt.axis('auto')
     plt.title(target_species_name+' Chromosome plot')
+    plt.xticks([])
+    plt.yticks([])
     plt.savefig(outdir + target_species_name+'.chrspaint.pdf')
     plt.close()
 
@@ -69,6 +71,8 @@ def plotBarplot(matched_target_species_block_file, matched_rearranged_species_bl
             ax.add_patch(rect)
     plt.axis('auto')
     plt.title(rearranged_species_name + ' Chromosome plot')
+    plt.xticks([])
+    plt.yticks([])
     plt.savefig(outdir + rearranged_species_name + '.chrspaint.pdf')
     plt.close()
 

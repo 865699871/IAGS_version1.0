@@ -9,13 +9,17 @@ def GGHPmodel(dup_child_file, outgroup_file, outdir,
     The block copy number of duplicated child species is dup_copynumber.
     The block copy number of outgroup speices is out_copy_number.
     WGD for dup_child_file: dup_copy_number = 2, out_copy_number = 1 (basic GGHP)
+    IAGS allow multiple species as input
+    which duplicated species block sequences and outgroup species block sequences
+    should be merged together, respectively and
+    the input target block copy number should be summed, respectively.
 
-    :param dup_child_file: block sequence for duplicated child species
-    :param outgroup_file: block sequence for outgroup species
+    :param dup_child_file: block sequence file for duplicated child species
+    :param outgroup_file: block sequence file for outgroup species
     :param outdir: output directory
     :param ancestor_name: ancestor name
-    :param dup_copy_number: the block copy number for duplicated child species
-    :param out_copy_number: the block copy number for outgroup speices
+    :param dup_copy_number: target block copy number of duplicated child species
+    :param out_copy_number: target block copy number of outgroup species
     """
     filelist = [dup_child_file,outgroup_file]
     adj_file = outdir + ancestor_name + '.adj'

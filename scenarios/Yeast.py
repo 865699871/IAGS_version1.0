@@ -28,18 +28,18 @@ def mergeblock(filelist,outfile):
 path = 'D:/InferAncestorGenome/realData'
 
 workdir = path + '/IAGS_version1.0/inputdata/Yeast/'
-nonWGD_yeast = [workdir + 'gossypii.final.block',
-                workdir + 'kluyveri.final.block',
-                workdir + 'lactis.final.block',
-                workdir + 'rouxii.final.block',
-                workdir + 'thermotolerans.final.block',
-                workdir + 'waltii.final.block']
+nonWGD_yeast = [workdir + 'Egossypii.final.block',
+                workdir + 'Lkluyveri.final.block',
+                workdir + 'Klactis.final.block',
+                workdir + 'Zrouxii.final.block',
+                workdir + 'Lthermotolerans.final.block',
+                workdir + 'Lwaltii.final.block']
 merged_nonWGDspecies_file = workdir + 'merged_non_WGD_yeast.block'
 mergeblock(nonWGD_yeast,merged_nonWGDspecies_file)
 
-WGD_yeast = [workdir + 'castellii.final.block',
-             workdir + 'naganishii.final.block',
-             workdir + 'R64.final.block']
+WGD_yeast = [workdir + 'Ncastellii.final.block',
+             workdir + 'Knaganishii.final.block',
+             workdir + 'Scerevisiae.final.block']
 merged_WGDspecies_file = workdir + 'merged_WGD_yeast.block'
 mergeblock(WGD_yeast,merged_WGDspecies_file)
 
@@ -50,14 +50,14 @@ GGHPmodel(dup_child_file=merged_WGDspecies_file,
           outgroup_file=merged_nonWGDspecies_file,
           outdir=outdir,
           ancestor_name=ancestor_name,
-          dup_copy_number=2+2+2,
-          out_copy_number=1+1+1+1+1+1)
+          dup_copy_number=2*3,
+          out_copy_number=1*6)
 
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1
 speciesAndCopyList = [
-    [workdir + 'merged_non_WGD_yeast.block',6,'merged_non_WGD_yeast'],
-    [workdir + 'merged_WGD_yeast.block',6,'merged_WGD_yeast']
+    [workdir + 'merged_non_WGD_yeast.block',2*3,'merged_non_WGD_yeast'],
+    [workdir + 'merged_WGD_yeast.block',1*6,'merged_WGD_yeast']
 ]
 
 mode_type = 'GGHP'

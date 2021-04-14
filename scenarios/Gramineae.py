@@ -18,8 +18,8 @@ workdir = path + '/IAGS_version1.0/inputdata/Gramineae/'
 Inferring ancestor species for Gramineae species. 
 Ancestor 4
 """
-dup_child_file = workdir + 'Maize.final.block'
-outgroup_file = workdir + 'Sorghum.final.block'
+dup_child_file = workdir + 'Zmays.final.block'
+outgroup_file = workdir + 'Sbicolor.final.block'
 outAncestor4dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
 dup_copy_number = 4
 out_copy_number = 2
@@ -31,8 +31,8 @@ MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor4dir,
 ancestor_file = outAncestor4dir + ancestor_name + '.block'
 ancestor_copy_number = ancestor_target_copy_number
 speciesAndCopyList = [
-    [workdir + 'Maize.final.block',dup_copy_number,'Maize'],
-    [workdir + 'Sorghum.final.block',out_copy_number,'Sorghum']
+    [workdir + 'Zmays.final.block',dup_copy_number,'Z.mays'],
+    [workdir + 'Sbicolor.final.block',out_copy_number,'S.bicolor']
 ]
 
 mode_type = 'MultiCopyGGHP'
@@ -44,10 +44,10 @@ statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_na
 Inferring ancestor species for Gramineae species. 
 Ancestor 3
 """
-species_file_list = [workdir + 'Sorghum.final.block',
+species_file_list = [workdir + 'Sbicolor.final.block',
                      outAncestor4dir + 'Ancestor4.block',
-                     workdir + 'Rice.final.block']
-guided_species_for_matching = workdir + 'Sorghum.final.block'
+                     workdir + 'Osativa.final.block']
+guided_species_for_matching = workdir + 'Sbicolor.final.block'
 ancestor_target_copy_number = 2
 outAncestor3dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
 ancestor_name = 'Ancestor3'
@@ -56,9 +56,9 @@ MultiCopyGMPmodel(species_file_list, outAncestor3dir, guided_species_for_matchin
 ancestor_file = outAncestor3dir + ancestor_name + '.block'
 ancestor_copy_number = ancestor_target_copy_number
 speciesAndCopyList = [
-    [workdir + 'Sorghum.final.block',ancestor_copy_number,'Sorghum'],
+    [workdir + 'Sbicolor.final.block',ancestor_copy_number,'S.bicolor'],
     [outAncestor4dir + 'Ancestor4.block',ancestor_copy_number,'Ancestor4'],
-    [workdir + 'Rice.final.block',ancestor_copy_number,'Rice']
+    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa']
 ]
 
 mode_type = 'MultiCopyGMP'
@@ -70,10 +70,10 @@ statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_na
 Inferring ancestor species for Gramineae species. 
 Ancestor 2
 """
-species_file_list = [workdir + 'Brachy.final.block',
+species_file_list = [workdir + 'Bdistachyon.final.block',
                      workdir + 'Telongatum.final.block',
-                     workdir + 'Rice.final.block']
-guided_species_for_matching = workdir + 'Brachy.final.block'
+                     workdir + 'Osativa.final.block']
+guided_species_for_matching = workdir + 'Bdistachyon.final.block'
 ancestor_target_copy_number = 2
 outAncestor2dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
 ancestor_name = 'Ancestor2'
@@ -82,9 +82,9 @@ MultiCopyGMPmodel(species_file_list, outAncestor2dir, guided_species_for_matchin
 ancestor_file = outAncestor2dir + ancestor_name + '.block'
 ancestor_copy_number = ancestor_target_copy_number
 speciesAndCopyList = [
-    [workdir + 'Brachy.final.block',ancestor_copy_number,'Brachy'],
-    [workdir + 'Telongatum.final.block',ancestor_copy_number,'Telongatum'],
-    [workdir + 'Rice.final.block',ancestor_copy_number,'Rice']
+    [workdir + 'Bdistachyon.final.block',ancestor_copy_number,'B.distachyon'],
+    [workdir + 'Telongatum.final.block',ancestor_copy_number,'T.elongatum'],
+    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa']
 ]
 
 mode_type = 'MultiCopyGMP'
@@ -96,10 +96,10 @@ statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_na
 Inferring ancestor species for Gramineae species. 
 Ancestor 1
 """
-species_file_list = [workdir + 'Rice.final.block',
+species_file_list = [workdir + 'Osativa.final.block',
                      outAncestor2dir + 'Ancestor2.block',
                      outAncestor3dir + 'Ancestor3.block']
-guided_species_for_matching = workdir + 'Rice.final.block'
+guided_species_for_matching = workdir + 'Osativa.final.block'
 ancestor_target_copy_number = 2
 outAncestor1dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 ancestor_name = 'Ancestor1'
@@ -108,7 +108,7 @@ MultiCopyGMPmodel(species_file_list, outAncestor1dir, guided_species_for_matchin
 ancestor_file = outAncestor1dir + ancestor_name + '.block'
 ancestor_copy_number = ancestor_target_copy_number
 speciesAndCopyList = [
-    [workdir + 'Rice.final.block',ancestor_copy_number,'Rice'],
+    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa'],
     [outAncestor2dir + 'Ancestor2.block',ancestor_copy_number,'Ancestor2'],
     [outAncestor3dir + 'Ancestor3.block',ancestor_copy_number,'Ancestor3']
 ]

@@ -6,7 +6,7 @@ def GMPmodel(species_file_list, outdir, ancestor_name):
     """
     Inferring ancestor species with GMP model. All species block copy number are only one.
 
-    :param species_file_list: input species block sequence list.
+    :param species_file_list: input species block sequence file list.
     :param outdir: output directory
     :param ancestor_name: ancestor name
     """

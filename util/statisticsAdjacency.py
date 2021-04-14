@@ -4,7 +4,6 @@ import numpy as np
 
 class StatisticsAdjacencies:
 
-    # 主要完成邻接统计工作，统计祖先邻接在，下属子节点中出现情况
     def __init__(self,ancestor_file,sp_filelist,ancestor_name,splist):
         ancestor_adj = self.__sequence2Adj(ancestor_file)
         sp_adjs = []
@@ -146,7 +145,6 @@ def outSequence(sequence,outfile):
         outfile.write('\n')
 
 def transformToAdjacency_for_scoj(file):
-    # 对自己连接自己的邻接进行替换，变成两个端粒
         adjacency_list = []
         with open(file) as df:
             while True:
@@ -185,7 +183,6 @@ def transformToAdjacency_for_scoj(file):
                     adjacency_list.append([last, '$'])
                 else:
                     adjacency_list.append([last, start])
-        # 将endpoint连接自己的情况进行替换
         new_adjacency_list = []
         for j in adjacency_list:
             new_adjacency_list.append(j[0]+'@'+j[1])
@@ -208,9 +205,9 @@ def estimatedAccuracyModel(CRB_ratio,mode_type):
             print('input error')
         return acc
 
-def statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number,ancetsor_name,
-                                     speciesAndCopyList,outdir,mode_type,
-                                     cutcycle = False,getCRBratio = False):
+def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancetsor_name,
+                                     speciesAndCopyList, outdir, model_type,
+                                     cutcycle = False, getCRBratio = False):
     """
     Using for evaluation IAGS result. Contain three part:
     1. Calculating ancestor support table by related species.
@@ -224,10 +221,10 @@ def statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number,ancetsor
     :param speciesAndCopyList: a set of related species using to infer this ancestor.
     Each one contain three items with block sequence file, target copy number and species name.
     :param outdir: output directory
-    :param mode_type: calculation models, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP.
+    :param model_type: calculation models, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP.
     :param cutcycle: parameter for whether cut cycle.
     If ancestor contains cycle block sequence, we cut the minimum support adjacency.
-    :param getCRBratio: parameter for whether calculted CRB ratio and estimated accuracy.
+    :param getCRBratio: parameter for whether calculated CRB ratio and estimated accuracy.
     """
     matchingFileList = []
     speciesName = []
@@ -345,10 +342,10 @@ def statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number,ancetsor
                 rate += 1
 
         rate = round(rate / (len(endpoints.keys()) - 1), 4)
-        acc = estimatedAccuracyModel(rate,mode_type)
+        acc = estimatedAccuracyModel(rate, model_type)
         ev_file = open(outdir + 'ev.txt','w')
         ev_file.write('CRB ratio: ' + str(rate) + '\n')
-        ev_file.write('Mode: ' + mode_type + '\n')
+        ev_file.write('Mode: ' + model_type + '\n')
         ev_file.write('Estimated accuracy: ' + str(acc) + '\n')
         ev_file.close()
 
