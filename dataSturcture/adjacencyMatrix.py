@@ -20,7 +20,7 @@ class AdjacencyMatrix:
         else:
             return item[:-1] + 'a'
 
-    # 重写，根据端粒确定起始点，
+
     def assemble(self):
         index = self.adjacency_matrix.index.tolist()
         columns =self.adjacency_matrix.columns.tolist()
@@ -47,7 +47,6 @@ class AdjacencyMatrix:
 
         startpoint = []
 
-        # 遍历矩阵第一行，不是0的加入start:
         for j in range(len(columns)):
             if np_adjacency_matrix[0][j] == 1:
                 startpoint.append(columns[j])
@@ -87,7 +86,7 @@ class AdjacencyMatrix:
         for i in adjs.keys():
             if i[:-1] not in vector:
                 cyclepoint.append(i)
-        # 循环需要寻找一个最薄弱的地方打断
+
         self.cyclechr = []
         markercycle = []
         for i in cyclepoint:
@@ -125,7 +124,6 @@ class AdjacencyMatrix:
         print("cycle:"+str(len(self.cyclechr)))
         for k in self.cyclechr:
             outfile.write('c ')
-            # 遍历寻找最小
             min_index = -1
             min_value = 1000000
             for l in range(len(k)):

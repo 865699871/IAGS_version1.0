@@ -2,13 +2,10 @@ import gurobipy as gp
 from gurobipy import *
 import pandas as pd
 import numpy as np
-import copy
 from dataSturcture.adjacencyMatrix import AdjacencyMatrix
 
 class EndpointMatchingOptimization:
 
-    # 输入当前观测的维度信息，以及比例关系
-    # 最后信息判断需不需要relabel guided file
     def __init__(self,ancestor_file,guided_file,matching_dim1 = 4,matching_dim2 = 2,relation1 = 1,relation2 = 2,relabel=False):
         self.__matching_dim1 = matching_dim1
         self.__matching_dim2 = matching_dim2
@@ -17,7 +14,7 @@ class EndpointMatchingOptimization:
         self.__relabel_block_sequences = []
         self.__relabel = relabel
         ancestor_matrix = pd.read_csv(ancestor_file,sep='\t',index_col=0)
-        # 保存每个邻接情况，用@分割，[block(a,b)@copy_number,block(a,b)@copy_number]
+
         self.__ancestor_adjacency_list = self.__build_adjacency_list(ancestor_matrix)
         self.__candidate_compress_adjacency_matrix, self.__candidate_endpoint_list = \
             self.__build_assumed_matrix(self.__ancestor_adjacency_list)
@@ -30,7 +27,7 @@ class EndpointMatchingOptimization:
         self.__guided_compress_adjacency_matrix, self.__guided_endpoint_list = \
             self.__build_assumed_matrix(self.__guided_adjacency_list)
 
-        self.__match_pairs = [] # 记录候选匹配的数据集
+        self.__match_pairs = []
         for i in self.__candidate_compress_adjacency_matrix:
             match_pair = []
             adj1 = i[-1]
@@ -60,7 +57,6 @@ class EndpointMatchingOptimization:
     def optimization(self):
         try:
             self.__m = gp.Model()
-            # 定义整数，需要添加范围约束
             match_matrix = self.__m.addVars(self.__k,
                                             self.__matching_dim1,
                                             self.__matching_dim2,
@@ -76,7 +72,6 @@ class EndpointMatchingOptimization:
                                         j[1] % self.__matching_dim2] + 1 - i[0][3])
                 for i in self.__match_pairs for j in i[1]
             ), GRB.MAXIMIZE)
-            # match矩阵，行加和为1，列加和为2
             self.__m.addConstrs((
                 gp.quicksum(match_matrix[i, j, l] for l in range(self.__matching_dim2)) == self.__relation1
                 for i in range(self.__k)
@@ -113,23 +108,21 @@ class EndpointMatchingOptimization:
                 index.append(item[0] + '@' + str(j + 1))
             match = pd.DataFrame(result[i], columns=column, index=index)
             match_relation = match.to_dict()
-            for j in match_relation.keys(): # 列即dim2
-                for k in match_relation[j].keys(): # 行dim1
+            for j in match_relation.keys():
+                for k in match_relation[j].keys():
                     item = k.split('@')
                     if match_relation[j][k] == 1:
-                        self.__match_relations[k] = j # key 是dim1 value 是dim2
+                        self.__match_relations[k] = j
 
     def output_matching_relation(self,outfile):
         outfile = open(outfile, 'w')
         for i in self.__match_relations.keys():
-            # block 待替换项 替换项
             line = i + ' ' + self.__match_relations[i]
             line += '\n'
             outfile.write(line)
         outfile.close()
 
     def build_adjacency_matrix(self):
-        # 根据匹配关系先重现编码邻接，再生成矩阵
         new_adjacency_list = []
         for i in self.__ancestor_adjacency_list:
             new_adjacency = []
@@ -366,11 +359,10 @@ class EndpointMatchingOptimization:
                 if round(adjacency_matrix[i][j]) != 0:
                     for k in range(adjacency_matrix[i][j]):
                         adjacency = [endpoint_list[i], endpoint_list[j]]
-                        # 对应 i，j也要排序
+
                         adjacency = sorted(adjacency)
                         if adjacency[0] == endpoint_list[i] and adjacency[1] == endpoint_list[j]:
-                            # 保存不包括 $ 符号，意味着index计算不从$开始，从第一个不为$的开始
-                            # [be1,be2,be3,be4,be'1,be'2,be'3,be'4]
+
                             if i == 0 and j == 0:
                                 compress_adjacency_matrix.append([i, j, 0, 0, adjacency])
                             if i == 0 and j != 0:
@@ -390,31 +382,4 @@ class EndpointMatchingOptimization:
                                 compress_adjacency_matrix.append([j - 1, i - 1, 1, 1, adjacency])
         return compress_adjacency_matrix, endpoint_list
 
-
-
-def main():
-    dirctionary = 'D:/InferAncestorGenome/simulatiedData/simpleSimulation/MultiGGHP/' \
-                  'divergence_change/testNewMatching/'
-
-    ancestor_file = '8.matrix.xls'
-    guided_file = 'species.sequence.9.relabel'
-
-    mo = EndpointMatchingOptimization(dirctionary + ancestor_file, dirctionary + guided_file,
-                                   matching_dim1=4, matching_dim2=4,
-                                   relation1=1, relation2=1,relabel=False)
-    output_sequence_file = dirctionary + '8.block'
-    mo.optimization()
-    mo.matching_relation()
-    adjacency_matrix = mo.build_adjacency_matrix()
-    adjacency_matrix.assemble()
-    adjacency_matrix.out_assembly(output_sequence_file)
-    # output_sequence_file_list = [dirctionary + 'species.sequence.9.relabel']
-    # mo.out_relabel_sequence(output_sequence_file_list)
-    # # 对组装的结果进行去重，每个染色体必然有两个一样的情况，
-    # # 将每条染色体建立字典相同的合并，记录数字，进行降维，然后重新编号
-
-
-
-if __name__ == '__main__':
-    main()
 

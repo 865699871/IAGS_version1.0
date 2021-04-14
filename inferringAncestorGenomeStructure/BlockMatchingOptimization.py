@@ -2,12 +2,9 @@ import gurobipy as gp
 from gurobipy import *
 import pandas as pd
 import numpy as np
-import copy
-from dataSturcture.adjacencyMatrix import AdjacencyMatrix
 
 class BlockMatchingOptimization:
 
-    # block 匹配，设置self matching选项
     def __init__(self,ancestor_file,guided_file,
                  matching_dim1 = 4,matching_dim2 = 2,
                  relation1 = 1,relation2 = 2,self_matching = False):
@@ -18,8 +15,6 @@ class BlockMatchingOptimization:
         self.__relabel_block_sequences = []
         self.__self_matching = self_matching
 
-
-        # 两个序列
         self.__ancestor_adjacency_list, self.__ancestor_block_order = self.__assumed_block_label(ancestor_file)
         self.__ancestor_compress_adjacency_matrix, self.__ancestor_endpoint_list = \
             self.__build_assumed_matrix(self.__ancestor_adjacency_list)
@@ -28,7 +23,7 @@ class BlockMatchingOptimization:
         self.__guided_compress_adjacency_matrix, self.__guided_endpoint_list = \
             self.__build_assumed_matrix(self.__guided_adjacency_list)
 
-        self.__match_pairs = [] # 记录候选匹配的数据集
+        self.__match_pairs = []
         for i in self.__ancestor_compress_adjacency_matrix:
             match_pair = []
             adj1 = i[-1]
@@ -58,7 +53,6 @@ class BlockMatchingOptimization:
     def optimization(self):
         try:
             self.__m = gp.Model()
-            # 定义整数，需要添加范围约束
             match_matrix = self.__m.addVars(self.__k,
                                             self.__matching_dim1,
                                             self.__matching_dim2,
@@ -74,7 +68,6 @@ class BlockMatchingOptimization:
                                         j[1] % self.__matching_dim2] + 1 - i[0][3])
                 for i in self.__match_pairs for j in i[1]
             ), GRB.MAXIMIZE)
-            # match矩阵，行加和为1，列加和为1
             self.__m.addConstrs((
                 gp.quicksum(match_matrix[i, j, l] for l in range(self.__matching_dim2)) == self.__relation1
                 for i in range(self.__k)
@@ -86,13 +79,13 @@ class BlockMatchingOptimization:
                 for j in range(self.__matching_dim2)), name='col_unique'
             )
             if self.__self_matching:
-                # 对角线不能为1,即自己不匹配自己
+
                 self.__m.addConstrs((
                     match_matrix[i,j,j] == 0
                     for i in range(self.__k)
                     for j in range(self.__matching_dim1)), name='diagonal'
                 )
-                # 矩阵对称
+
                 self.__m.addConstrs((
                     match_matrix[i, j, k] == match_matrix[i, k, j]
                     for i in range(self.__k)
@@ -113,9 +106,8 @@ class BlockMatchingOptimization:
             result.append(v.x)
         result = np.asarray(result)
         result = result.reshape((self.__k, self.__matching_dim1, self.__matching_dim2))
-        self.__match_relations = {} # key：每个block替换项，value：待替换项list
-        # 自匹配策略，形成替换组，新建index
-        # 其他匹配策略，形成替换组，以外组作为index
+        self.__match_relations = {}
+
         if self.__self_matching:
             for i in range(self.__k):
                 block = self.__ancestor_endpoint_list[i * self.__matching_dim1*2 + 1].split('@')[0][:-1]
@@ -142,7 +134,7 @@ class BlockMatchingOptimization:
         outfile = open(outfile, 'w')
         for i in self.__match_relations.keys():
             key1 = i.split('_')
-            # block 待替换项 替换项
+
             line = key1[0] + ' ' + key1[1]
             key2 = self.__match_relations[i].split('_')
             line += ' ' + key2[1]
@@ -249,11 +241,10 @@ class BlockMatchingOptimization:
             for j in range(len(adjacency_matrix[i])):
                 if adjacency_matrix[i][j] == 1:
                     adjacency = [endpoint_list[i], endpoint_list[j]]
-                    # 对应 i，j也要排序
+
                     adjacency = sorted(adjacency)
                     if adjacency[0] == endpoint_list[i] and adjacency[1] == endpoint_list[j]:
-                        # 保存不包括 $ 符号，意味着index计算不从$开始，从第一个不为$的开始
-                        # [be1,be2,be3,be4,be'1,be'2,be'3,be'4]
+
                         if i == 0 and j == 0:
                             compress_adjacency_matrix.append([i, j, 0, 0, adjacency])
                         if i == 0 and j != 0:
@@ -296,7 +287,7 @@ class BlockMatchingOptimization:
         else:
             relabel_block_sequences = []
             for i in self.__ancestor_block_order:
-                relabel_block_sequence = []  # 将第一个文件，向第二个转变
+                relabel_block_sequence = []
                 chr_type = i[0]
                 for j in i[1:]:
                     if j.startswith('-'):
@@ -325,31 +316,4 @@ class BlockMatchingOptimization:
 
 
 
-
-
-
-def main():
-    dirctionary = 'D:/InferAncestorGenome/simulatiedData/simpleSimulation/MultiGGHP/' \
-                  'divergence_change/testNewMatching/'
-
-    ancestor_file = 'species.sequence.9'
-    guided_file = 'species.sequence.9'
-
-    outmatching = dirctionary + 'matching_9_9.txt'
-
-    mo = BlockMatchingOptimization(dirctionary+ancestor_file,dirctionary+guided_file,
-                                  matching_dim1=8,matching_dim2=8,
-                              relation1=1,relation2=1,self_matching=True)
-    mo.optimization()
-    mo.matching_relation()
-    mo.output_matching_relation(outmatching)
-    output_sequence_file_list = [dirctionary + 'species.sequence.9.relabel']
-    mo.out_relabel_sequence(output_sequence_file_list)
-    # # 对组装的结果进行去重，每个染色体必然有两个一样的情况，
-    # # 将每条染色体建立字典相同的合并，记录数字，进行降维，然后重新编号
-
-
-
-if __name__ == '__main__':
-    main()
 

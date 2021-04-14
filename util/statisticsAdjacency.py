@@ -350,20 +350,3 @@ def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancets
         ev_file.close()
 
 
-
-
-# ancestor_file = 'D:/InferAncestorGenome/realData/' \
-#                 'IAGS_version1.0/outputdata/Gramineae/Ancestor4/Ancestor4.block'
-# ancestor_copy_number = 2
-# speciesAndCopyList = [['D:/InferAncestorGenome/realData/'
-#                       'IAGS_version1.0/inputdata/'
-#                        'Gramineae/Maize.final.block',4,'Maize'],
-#                       ['D:/InferAncestorGenome/realData/'
-#                        'IAGS_version1.0/inputdata/'
-#                        'Gramineae/Sorghum.final.block', 2, 'Sorghum']]
-# outdir = 'D:/InferAncestorGenome/realData/' \
-#          'IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
-# mode_type = 'MultiCopyGGHP'
-# statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number,'Ancestor4',
-#                                      speciesAndCopyList,outdir,mode_type,
-#                                      cutcycle = True,getCRBratio = True)

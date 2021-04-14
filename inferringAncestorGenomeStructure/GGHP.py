@@ -10,13 +10,7 @@ class GGHP:
         self.__target_copy_number = target_copy_number
         self.__duptype = duptype
         self.__duptype_out = duptype_out
-        # 观测的值向量，
-        # 邻接的对应名字，
-        # 邻接的分区range信息，
-        # 邻接的对称信息，
-        # 祖先邻接的候选集合
-        # 对角信息，
-        # 矩阵的列名信息
+
         self.__observation_adjacency_vectors_value, \
         self.__adjacency_name, \
         self.__vector_range_value, \
@@ -47,11 +41,7 @@ class GGHP:
                     index += 2
                 adjacency_relations.append(adjacency)
         matrix_items = sorted(matrix_items)
-        # 先构建大矩阵，
-        # 然后生成值向量
-        # 表示每个行每个值包括的邻接对的向量，
-        # 同时记录对称位置向量，
-        # 记录每个项起止位置的向量
+
         adjacency_matrix = {}
         for i in matrix_items:
             adjacency_matrix[i] = {}
@@ -64,11 +54,10 @@ class GGHP:
                 observation_adjacency_matrix[j[0]][j[1]] += 1
                 observation_adjacency_matrix[j[1]][j[0]] += 1
             observation_adjacency_matrixs.append(observation_adjacency_matrix)
-        # 遍历两个生成完的矩阵，构建并集向量
+
         candidate_observation_adjacency_matrix = observation_adjacency_matrixs[0]
         guided_observation_adjacency_matrix = observation_adjacency_matrixs[1]
 
-        # 每个端点的邻接表格
         adjacency_table = {}
         for i in matrix_items:
             if i == '$':
@@ -90,7 +79,6 @@ class GGHP:
             adjacency_table[i] = {}
             for j in union_items:
                 adjacency_table[i][j] = 0
-        # 分区
         range_vector = {}
         adjacency_vector = {}
         start = 0
@@ -106,14 +94,12 @@ class GGHP:
                 count += 1
             range_vector[i].append(end)
             start = end
-        # 对称vector，表示对称点的位置
         symmetry_vector = {}
         for i in adjacency_vector.keys():
             key = i.split('@')
             key_sym = key[1] + '@' + key[0]
             symmetry_vector[i] = adjacency_vector[key_sym]
 
-        # 清空adjacency_vector
         empty_adjacency_vector = {}
         for i in adjacency_vector:
             empty_adjacency_vector[i] = 0
@@ -126,7 +112,6 @@ class GGHP:
                         key = j + '@' + k
                         observation_adjacency_vector[key] += i[j][k]
             observation_adjacency_vectors.append(observation_adjacency_vector)
-        # 数值向量化
         adjacency_name = list(observation_adjacency_vectors[0].keys())
         observation_adjacency_vectors_value = []
         for i in observation_adjacency_vectors:
@@ -145,13 +130,11 @@ class GGHP:
             for j in range(len(sequence)):
                 if sequence[j] != 0:
                     nonZero.append(j + ranges[0])
-            # if ranges[0] not in nonZero:
-            #     nonZero.append(ranges[0])
+
             candidate_adjacency.append(nonZero)
         vector_symmetry_value = []
         for i in symmetry_vector.keys():
             vector_symmetry_value.append(symmetry_vector[i])
-        # 检查对称等于自己的是错误
         diagonal_value = []
         for i in range(len(vector_symmetry_value)):
             if vector_symmetry_value[i] == i:
@@ -173,9 +156,7 @@ class GGHP:
 
     def optimization(self):
         try:
-            # self.__alpha = self.__target_copy_number
             self.__m = gp.Model()
-            # 定义整数，需要添加范围约束
 
             ancestor = self.__m.addVars(self.__variable_number,
                                         vtype=GRB.INTEGER, name="ancestor")
