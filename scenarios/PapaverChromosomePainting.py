@@ -1,11 +1,12 @@
 from util.chromosomeRearrangementPainting import plotChrsRearrangement
 
 """
-Chromosomes painting for Papaver in evolution landscape. 
+Chromosomes painting for Papaver in evolution history. 
 result in outdutdata/Papaver/plot
 """
 path = 'D:/InferAncestorGenome/realData'
 
+# colors for target species chromosomes, Ancestor 1
 colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D','#94B51E']
 
 block_length_file = path + '/IAGS_version1.0/inputdata/Papaver/blockindex.genenumber'

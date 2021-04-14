@@ -1,7 +1,7 @@
 from models.GMPmodel import GMPmodel
 from util.statisticsAdjacency import statisticsAdjacenciesInformation
 """
-Inferring ancestor species for Brassica. GMP model
+Inferring ancestor species for Brassica using GMP model
 result in outdutdata/Brassica
 """
 path = 'D:/InferAncestorGenome/realData'
@@ -17,13 +17,14 @@ GMPmodel(species_file_list=species_block_filelist,
          outdir=outdir,
          ancestor_name=ancestor_name)
 
+# Evaluation
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1
 speciesAndCopyList = [[workdir + 'Boleracea.final.block',ancestor_copy_number,'B.oleracea'],
                       [workdir + 'Brapa.final.block',ancestor_copy_number,'B.rapa'],
                       [workdir + 'Bnigra.final.block',ancestor_copy_number,'B.nigra']]
 
-mode_type = 'GMP'
-statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_name,
-                                     speciesAndCopyList,outdir,mode_type,
-                                     cutcycle = False,getCRBratio = True)
+model_type = 'GMP'
+statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
+                                 speciesAndCopyList, outdir, model_type,
+                                 cutcycle = False, getCRBratio = True)

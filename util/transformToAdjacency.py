@@ -1,4 +1,10 @@
 def transformToAdjacency(file_list,outfile):
+    """
+    Transform block sequences to adjacencies.
+
+    :param file_list: input species block sequence file list
+    :param outfile: output adjacencies file
+    """
     outfile = open(outfile, 'w')
     for i in file_list:
         adjacency_list = []

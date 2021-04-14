@@ -1,7 +1,7 @@
 from util.calculateFissionsAndFusions import calculateFissionAndFussions
 
 """
-Calculating Fissions and Fusions for Gramineae in evolution landscape. 
+Calculating Fissions and Fusions for Gramineae in evolution history. 
 result in outdutdata/Gramineae
 """
 path = 'D:/InferAncestorGenome/realData'

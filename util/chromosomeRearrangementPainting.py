@@ -82,19 +82,22 @@ def plotChrsRearrangement(block_length_file,
                           target_species_block_file,target_species_name,target_species_copy_number,
                           colorlist,outdir):
     """
-    Chromosomes rearrangement paint.
-    First matching two block sequence and then show the chromosome change in rearranged_species
+    IAGS allows output chromosomes rearrangement painting
+    which takes into two species block sequences files.
+    One is target species (ancestor) and the other is rearranged species (descendant).
+    IAGS used BMO matching both species and then plots chromosomes painting.
 
-    :param block_length_file: a table recorded each block length (gene number)
-    :param rearranged_species_block_file: block sequence for rearranged species which is species with rearrangement
-    :param rearranged_species_name: rearranged species name
-    :param rearranged_species_copy_number: rearranged species copy number
-    :param target_species_block_file: block sequence for target species
-    :param target_species_name: target species name
-    :param target_species_copy_number: target species copy number
-    :param colorlist: color for chromosomes in target species
+    :param block_length_file: a table recorded each block length (base number or gene number)
+    :param rearranged_species_block_file: rearranged species block sequence file
+    :param rearranged_species_name: name of rearranged species
+    :param rearranged_species_copy_number: target copy number of rearranged species
+    :param target_species_block_file: target species block sequence file
+    :param target_species_name: name of target species
+    :param target_species_copy_number: target copy number of target species
+    :param colorlist: colors for chromosomes in target species
     :param outdir: output directory
     """
+    # matching with each other
     mo = BlockMatchingOptimization(rearranged_species_block_file,
                                    target_species_block_file,
                                    matching_dim1=rearranged_species_copy_number,
@@ -106,7 +109,7 @@ def plotChrsRearrangement(block_length_file,
     output_sequence_file_list = [outdir + rearranged_species_name + '.plot.block',
                                  outdir + target_species_name + '.plot.block']
     mo.out_relabel_sequence(output_sequence_file_list)
-
+    # plot
     plotBarplot(output_sequence_file_list[1], output_sequence_file_list[0],
                 block_length_file, colorlist, outdir,
                     rearranged_species_name,target_species_name)

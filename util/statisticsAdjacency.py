@@ -209,28 +209,31 @@ def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancets
                                      speciesAndCopyList, outdir, model_type,
                                      cutcycle = False, getCRBratio = False):
     """
-    Using for evaluation IAGS result. Contain three part:
-    1. Calculating ancestor support table by related species.
-    2. Cutting cucle block sequence to string.
-    Finding an adjacency with minimum support in related species and cutting this adjacency to string.
-    3. Calculating CRB ratio and estimated accuracy.
+    IAGS provides inferred ancestor evaluation function which contains three part.
 
-    :param ancestor_file: ancestor block sequence file
-    :param ancestor_copy_number: ancestor target copy number
+    Firstly, calculating ancestral adjacencies support table.
+    All species used for calculating this ancestor should first match with this ancestor by BMO integer programming formulations
+    and then counting the number of block adjacencies appeared in all species, respectively.
+
+    Secondly, ancestors may appear circular chromosomes.
+    Here, IAGS allows user to cut one adjacency in circular chromosomes with minimum number of support to make circular to strings.
+
+    Finally, IAGS calculates completely rearranged breakpoints ratio and obtains estimation accuracy by accuracy estimation function.
+
+    :param ancestor_file: block sequence file for inferred ancestor
+    :param ancestor_copy_number: target copy number of ancestor
     :param ancetsor_name: ancestor name
-    :param speciesAndCopyList: a set of related species using to infer this ancestor.
-    Each one contain three items with block sequence file, target copy number and species name.
+    :param speciesAndCopyList: all species block sequences file,target copy number and species name
     :param outdir: output directory
-    :param model_type: calculation models, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP.
-    :param cutcycle: parameter for whether cut cycle.
-    If ancestor contains cycle block sequence, we cut the minimum support adjacency.
-    :param getCRBratio: parameter for whether calculated CRB ratio and estimated accuracy.
+    :param model_type: model used for obtaining ancestor, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP
+    :param cutcycle: parameter for whether cut circular chromosomes
+    :param getCRBratio: parameter for whether calculated CRB ratio and estimation accuracy.
     """
     matchingFileList = []
     speciesName = []
     ancestormatchingFile = ''
     sumcopynumber = 0
-    # matching
+    # matching with ancestor
     for i in speciesAndCopyList:
         sumcopynumber += i[1]
         mo = BlockMatchingOptimization(i[0],
@@ -248,6 +251,7 @@ def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancets
         speciesName.append(i[2])
         ancestormatchingFile = outdir + ancetsor_name + '.ev.relabel.block'
 
+    # calculating ancestral adjacencies support table
     ev = StatisticsAdjacencies(ancestormatchingFile,
                     matchingFileList,
                     ancetsor_name, speciesName)
@@ -259,6 +263,7 @@ def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancets
     for i in range(len(adjs)):
         adjs_weight[adjs[i]] = np.sum(ev_table[i][1:])
 
+    # cut circular chromosomes
     if cutcycle == True:
         ancestorSequence = readSequence(ancestormatchingFile)
         stringSequence = []
@@ -315,6 +320,8 @@ def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancets
             stringSequence.append(['s']+path)
         outSequence(stringSequence,outdir + ancetsor_name + '.cutcycle.block')
 
+
+    # calculated CRB ratio and estimation accuracy.
     if getCRBratio == True:
         endpoints = {}
         for i in matchingFileList:

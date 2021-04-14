@@ -1,12 +1,13 @@
 from util.chromosomeRearrangementPainting import plotChrsRearrangement
 
 """
-Chromosomes painting for Yeast in evolution landscape. 
+Chromosomes painting for Yeast in evolution history. 
 result in outdutdata/Yeast/plot
 """
 
 path = 'D:/InferAncestorGenome/realData'
 
+# colors for target species chromosomes, preWGD yeast ancestor
 colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D',
              '#94B51E','#000000']
 

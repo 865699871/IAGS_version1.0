@@ -3,7 +3,7 @@ from util.statisticsAdjacency import statisticsAdjacenciesInformation
 
 """
 Inferring ancestor species for Yeast species. GGHP model
-nonWGD and WGD yeast should be merged respectively.
+block sequences and target copy number of nonWGD and WGD yeast should be merged, respectively.
 
 result in outdutdata/Yeast
 """
@@ -35,6 +35,7 @@ nonWGD_yeast = [workdir + 'Egossypii.final.block',
                 workdir + 'Lthermotolerans.final.block',
                 workdir + 'Lwaltii.final.block']
 merged_nonWGDspecies_file = workdir + 'merged_non_WGD_yeast.block'
+# merged
 mergeblock(nonWGD_yeast,merged_nonWGDspecies_file)
 
 WGD_yeast = [workdir + 'Ncastellii.final.block',
@@ -45,22 +46,22 @@ mergeblock(WGD_yeast,merged_WGDspecies_file)
 
 outdir = path + '/IAGS_version1.0/outputdata/Yeast/'
 ancestor_name = 'preWGD_yeast'
-# three duplicated yeasts and six non duplicated yeasts
+# three duplicated yeasts and six non duplicated yeasts, target copy number are both 6.
 GGHPmodel(dup_child_file=merged_WGDspecies_file,
           outgroup_file=merged_nonWGDspecies_file,
           outdir=outdir,
           ancestor_name=ancestor_name,
           dup_copy_number=2*3,
           out_copy_number=1*6)
-
+# Evaluation
 ancestor_file = outdir + ancestor_name + '.block'
 ancestor_copy_number = 1
 speciesAndCopyList = [
-    [workdir + 'merged_non_WGD_yeast.block',2*3,'merged_non_WGD_yeast'],
-    [workdir + 'merged_WGD_yeast.block',1*6,'merged_WGD_yeast']
+    [workdir + 'merged_non_WGD_yeast.block',1*6,'merged_non_WGD_yeast'],
+    [workdir + 'merged_WGD_yeast.block',2*3,'merged_WGD_yeast']
 ]
 
-mode_type = 'GGHP'
-statisticsAdjacenciesInformation(ancestor_file,ancestor_copy_number, ancestor_name,
-                                     speciesAndCopyList,outdir,mode_type,
-                                     cutcycle = False,getCRBratio = True)
+model_type = 'GGHP'
+statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
+                                 speciesAndCopyList, outdir, model_type,
+                                 cutcycle = False, getCRBratio = True)

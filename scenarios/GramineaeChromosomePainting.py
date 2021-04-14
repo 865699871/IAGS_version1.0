@@ -1,11 +1,12 @@
 from util.chromosomeRearrangementPainting import plotChrsRearrangement
 
 """
-Chromosomes painting for Gramineae in evolution landscape. 
+Chromosomes painting for Gramineae in evolution history. 
 result in outdutdata/Gramineae/plot
 """
 path = 'D:/InferAncestorGenome/realData'
 
+# colors for target species chromosomes, Ancestor 1
 colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D',
              '#94B51E','#000000','#A9A9A9','#62C1BD','#FF8C00','#4169E1']
 

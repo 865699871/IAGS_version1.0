@@ -62,26 +62,29 @@ def calculate(sp1_file,sp2_file):
 
 def calculateFissionAndFussions(species1_file,species2_file,sp1_copy_number,sp2_copy_number,outdir):
     """
-    Calculating shuffling events like fissions and fusions.
-    Species 1 is descendant and species 2 is ancestor.
-    Copy number of species 2 should no larger than species 1.
-    Firstly, the copy number of species 2 should be amplifies to species 1
-    Then, using BMO to find matching relation between both species
-    Finally, counting shuffling events.
+    IAGS provides downstream analysis for counting shuffling events,
+    like fissions and fusions,
+    which takes into two species block sequences and copy number of species 2 (ancestor) cannot larger than species 1 (descendant).
+    If the copy number of species 1 is not equal to species 2 because of WGDs,
+    block sequence of species 2 should be amplified to species 1.
+    Then, IAGS used BMO matching both species and transformed to adjacencies.
+    The adjacencies absent in species 2 are fusions and absent in species 1 are fissions.
 
-    :param species1_file: species1 block sequence file
-    :param species2_file: species2 block sequence file
-    :param sp1_copy_number: species 1 copy number
-    :param sp2_copy_number: species 2 copy number
-    :param outdir: output matching sequence
+    :param species1_file: species 1 block sequence file
+    :param species2_file: species 2 block sequence file
+    :param sp1_copy_number: target copy number of species 1
+    :param sp2_copy_number: target copy number of species 2
+    :param outdir: output directory
     :return: fissions number and fusions number
     """
     species2 = readSequence(species2_file)
+    # amplified to species 1
     multi_species2 = []
     for i in range(int(sp1_copy_number / sp2_copy_number)):
         for j in species2:
             multi_species2.append(j)
     outSequence(multi_species2, outdir + 'speices2.amplify.block')
+    # matching with each other
     mo = BlockMatchingOptimization(species1_file, outdir + 'speices2.amplify.block',
                                    matching_dim1=sp1_copy_number,
                                    matching_dim2=sp1_copy_number,
@@ -92,6 +95,7 @@ def calculateFissionAndFussions(species1_file,species2_file,sp1_copy_number,sp2_
     output_sequence_file_list = [outdir+'species1.matching.block',
                                  outdir+'species2.amplify.matching.block']
     mo.out_relabel_sequence(output_sequence_file_list)
+    # counting fissions and fusions
     fissions,fusions = calculate(output_sequence_file_list[0],output_sequence_file_list[1])
     return fissions,fusions
 

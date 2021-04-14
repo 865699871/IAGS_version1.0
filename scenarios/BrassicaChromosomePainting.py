@@ -1,11 +1,12 @@
 from util.chromosomeRearrangementPainting import plotChrsRearrangement
 
 """
-Chromosomes painting for Brassica in evolution landscape. 
+Chromosomes painting for Brassica in evolution history. 
 result in outdutdata/Brassica/plot
 """
 path = 'D:/InferAncestorGenome/realData'
 
+# colors for target species chromosomes, Brassica ancestor
 colorlist = ['#DF1159','#1E93C9','#26AF67','#D5A1C5','#EBCA6D',
              '#94B51E','#000000','#A9A9A9','#62C1BD']
 

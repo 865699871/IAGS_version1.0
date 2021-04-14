@@ -1,7 +1,7 @@
 from util.calculateFissionsAndFusions import calculateFissionAndFussions
 
 """
-Calculating Fissions and Fusions for Papaver in evolution landscape. 
+Calculating Fissions and Fusions for Papaver in evolution history. 
 result in outdutdata/Papaver
 """
 

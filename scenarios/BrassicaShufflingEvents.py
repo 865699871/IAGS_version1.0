@@ -1,7 +1,7 @@
 from util.calculateFissionsAndFusions import calculateFissionAndFussions
 
 """
-Calculating Fissions and Fusions for Brassica in evolution landscape. 
+Calculating Fissions and Fusions for Brassica in evolution history. 
 result in outdutdata/Brassica
 """
 path = 'D:/InferAncestorGenome/realData'
