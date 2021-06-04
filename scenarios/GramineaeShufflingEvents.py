@@ -34,6 +34,9 @@ Ancestor 1 -> Ancestor 2
 ancestor2_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor2/'
 ancestor1_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor1/'
 
+descendant_file = ancestor2_block_sequence_dir + 'Ancestor2.block'
+ancestor_file = ancestor1_block_sequence_dir + 'Ancestor1.block'
+
 descendant_copy_number = 2
 ancestor_copy_number = 2
 

@@ -1,7 +1,7 @@
 from models.MultiGMPmodel import MultiCopyGMPmodel
 from models.MultiGGHPmodel import MultiCopyGGHPmodel
 from models.GGHPmodel import GGHPmodel
-from util.statisticsAdjacency import statisticsAdjacenciesInformation
+from util.calculatedCRBrateAndEstimationAccuracy import calculatedCRBrateAndEstimationAccuracy
 
 """
 Inferring ancestor species for Papaver species. 
@@ -51,16 +51,17 @@ MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor3dir,
                    ancestor_target_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor3dir + ancestor_name + '.block'
+matching_target_file = workdir + 'Psomniferum.final.block'
+matching_target_copy_number = out_copy_number
+matching_target_name = 'P.somniferum'
 speciesAndCopyList = [
     [workdir + 'Psetigerum.final.block',dup_copy_number,'P.setigerum'],
     [workdir + 'Psomniferum.final.block',out_copy_number,'P.somniferum']
 ]
 
 model_type = 'MultiCopyGGHP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_target_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor3dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor3dir, model_type)
 
 """
 Inferring ancestor species for Papaver species. 
@@ -80,16 +81,17 @@ GGHPmodel(dup_child_file=dup_child_file,
           out_copy_number=out_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor1dir + ancestor_name + '.block'
+matching_target_file = workdir + 'Prhoeas.final.block'
+matching_target_copy_number = out_copy_number
+matching_target_name = 'P.rhoeas'
 ancestor_copy_number = 1
 speciesAndCopyList = [
     [workdir + 'Psomniferum.final.block',dup_copy_number,'P.somniferum'],
     [workdir + 'Prhoeas.final.block',out_copy_number,'P.rhoeas']
 ]
 model_type = 'GGHP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor1dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor1dir, model_type)
 
 """
 Inferring ancestor species for Papaver species. 
@@ -107,16 +109,17 @@ MultiCopyGMPmodel(species_file_list, outAncestor2dir, guided_species_for_matchin
                   ancestor_name, ancestor_target_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor2dir + ancestor_name + '.block'
+matching_target_file = workdir + 'Psomniferum.final.block'
+matching_target_copy_number = ancestor_target_copy_number
+matching_target_name = 'P.somniferum'
 speciesAndCopyList = [
     [workdir + 'Psomniferum.final.block',ancestor_target_copy_number,'P.somniferum'],
     [outAncestor3dir + 'Ancestor3.block',ancestor_target_copy_number,'Ancestor3'],
     [outAncestor1dir + 'Ancestor1.doubled.block',ancestor_target_copy_number,'Ancestor1.doubled']
 ]
 model_type = 'MultiCopyGMP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_target_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor2dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor2dir, model_type)
 
 
 

@@ -1,5 +1,5 @@
 from models.GGHPmodel import GGHPmodel
-from util.statisticsAdjacency import statisticsAdjacenciesInformation
+from util.calculatedCRBrateAndEstimationAccuracy import calculatedCRBrateAndEstimationAccuracy
 
 """
 Inferring ancestor species for Yeast species. GGHP model
@@ -54,14 +54,22 @@ GGHPmodel(dup_child_file=merged_WGDspecies_file,
           dup_copy_number=2*3,
           out_copy_number=1*6)
 # Evaluation
-ancestor_file = outdir + ancestor_name + '.block'
-ancestor_copy_number = 1
+matching_target_file = workdir + 'Lwaltii.final.block'
+matching_target_copy_number = 1
+matching_target_name = 'Lwaltii'
+
 speciesAndCopyList = [
-    [workdir + 'merged_non_WGD_yeast.block',1*6,'merged_non_WGD_yeast'],
-    [workdir + 'merged_WGD_yeast.block',2*3,'merged_WGD_yeast']
+    [workdir + 'Ncastellii.final.block',2,'Ncastellii'],
+    [workdir + 'Knaganishii.final.block',2,'Knaganishii'],
+    [workdir + 'Scerevisiae.final.block',2,'Scerevisiae'],
+    [workdir + 'Egossypii.final.block',1,'Egossypii'],
+    [workdir + 'Lkluyveri.final.block',1,'Lkluyveri'],
+     [workdir + 'Klactis.final.block', 1, 'Klactis'],
+     [workdir + 'Zrouxii.final.block', 1, 'Zrouxii'],
+     [workdir + 'Lthermotolerans.final.block', 1, 'Lthermotolerans'],
+     [workdir + 'Lwaltii.final.block', 1, 'Lwaltii']
 ]
 
 model_type = 'GGHP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outdir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outdir, model_type)

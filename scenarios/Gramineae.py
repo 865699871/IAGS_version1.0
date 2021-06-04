@@ -1,6 +1,7 @@
 from models.MultiGMPmodel import MultiCopyGMPmodel
 from models.MultiGGHPmodel import MultiCopyGGHPmodel
-from util.statisticsAdjacency import statisticsAdjacenciesInformation
+from util.calculatedCRBrateAndEstimationAccuracy import calculatedCRBrateAndEstimationAccuracy
+from util.cutCircularChromosomes import cutCircularChromosomes
 
 """
 Inferring ancestor species for Gramineae species. 
@@ -28,9 +29,19 @@ ancestor_name = 'Ancestor4'
 MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor4dir,
                    ancestor_name, dup_copy_number, out_copy_number, ancestor_target_copy_number)
 
+speciesAndCopyList = [
+    [workdir + 'Zmays.final.block',dup_copy_number,'Z.mays'],
+    [workdir + 'Sbicolor.final.block',out_copy_number,'S.bicolor']
+]
+cutCircularChromosomes(outAncestor4dir + 'Ancestor4.block',
+                       ancestor_target_copy_number,
+                       ancestor_name,speciesAndCopyList,outAncestor4dir)
+
 # Evaluation
-ancestor_file = outAncestor4dir + ancestor_name + '.block'
-ancestor_copy_number = ancestor_target_copy_number
+matching_target_file = workdir + 'Sbicolor.final.block'
+matching_target_copy_number = out_copy_number
+matching_target_name = 'S.bicolor'
+
 speciesAndCopyList = [
     [workdir + 'Zmays.final.block',dup_copy_number,'Z.mays'],
     [workdir + 'Sbicolor.final.block',out_copy_number,'S.bicolor']
@@ -38,9 +49,8 @@ speciesAndCopyList = [
 
 model_type = 'MultiCopyGGHP'
 # cut circular chromosomes
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor4dir, model_type,
-                                 cutcycle = True, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor4dir, model_type)
 
 """
 Inferring ancestor species for Gramineae species. 
@@ -56,18 +66,18 @@ ancestor_name = 'Ancestor3'
 MultiCopyGMPmodel(species_file_list, outAncestor3dir, guided_species_for_matching, ancestor_name, ancestor_target_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor3dir + ancestor_name + '.block'
-ancestor_copy_number = ancestor_target_copy_number
+matching_target_file = workdir + 'Sbicolor.final.block'
+matching_target_copy_number = ancestor_target_copy_number
+matching_target_name = 'S.bicolor'
 speciesAndCopyList = [
-    [workdir + 'Sbicolor.final.block',ancestor_copy_number,'S.bicolor'],
-    [outAncestor4dir + 'Ancestor4.block',ancestor_copy_number,'Ancestor4'],
-    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa']
+    [workdir + 'Sbicolor.final.block',ancestor_target_copy_number,'S.bicolor'],
+    [outAncestor4dir + 'Ancestor4.block',ancestor_target_copy_number,'Ancestor4'],
+    [workdir + 'Osativa.final.block',ancestor_target_copy_number,'O.sativa']
 ]
 
 model_type = 'MultiCopyGMP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor3dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor3dir, model_type)
 
 """
 Inferring ancestor species for Gramineae species. 
@@ -83,18 +93,18 @@ ancestor_name = 'Ancestor2'
 MultiCopyGMPmodel(species_file_list, outAncestor2dir, guided_species_for_matching, ancestor_name, ancestor_target_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor2dir + ancestor_name + '.block'
-ancestor_copy_number = ancestor_target_copy_number
+matching_target_file = workdir + 'Bdistachyon.final.block'
+matching_target_copy_number = ancestor_target_copy_number
+matching_target_name = 'B.distachyon'
 speciesAndCopyList = [
-    [workdir + 'Bdistachyon.final.block',ancestor_copy_number,'B.distachyon'],
-    [workdir + 'Telongatum.final.block',ancestor_copy_number,'T.elongatum'],
-    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa']
+    [workdir + 'Bdistachyon.final.block',ancestor_target_copy_number,'B.distachyon'],
+    [workdir + 'Telongatum.final.block',ancestor_target_copy_number,'T.elongatum'],
+    [workdir + 'Osativa.final.block',ancestor_target_copy_number,'O.sativa']
 ]
 
 model_type = 'MultiCopyGMP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor2dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor2dir, model_type)
 
 """
 Inferring ancestor species for Gramineae species. 
@@ -110,15 +120,15 @@ ancestor_name = 'Ancestor1'
 MultiCopyGMPmodel(species_file_list, outAncestor1dir, guided_species_for_matching, ancestor_name, ancestor_target_copy_number)
 
 # Evaluation
-ancestor_file = outAncestor1dir + ancestor_name + '.block'
-ancestor_copy_number = ancestor_target_copy_number
+matching_target_file = workdir + 'Osativa.final.block'
+matching_target_copy_number = ancestor_target_copy_number
+matching_target_name = 'O.sativa'
 speciesAndCopyList = [
-    [workdir + 'Osativa.final.block',ancestor_copy_number,'O.sativa'],
-    [outAncestor2dir + 'Ancestor2.block',ancestor_copy_number,'Ancestor2'],
-    [outAncestor3dir + 'Ancestor3.block',ancestor_copy_number,'Ancestor3']
+    [workdir + 'Osativa.final.block',ancestor_target_copy_number,'O.sativa'],
+    [outAncestor2dir + 'Ancestor2.block',ancestor_target_copy_number,'Ancestor2'],
+    [outAncestor3dir + 'Ancestor3.block',ancestor_target_copy_number,'Ancestor3']
 ]
 
 model_type = 'MultiCopyGMP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outAncestor1dir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outAncestor1dir, model_type)

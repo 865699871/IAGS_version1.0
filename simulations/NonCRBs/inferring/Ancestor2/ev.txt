@@ -1,3 +1,0 @@
-CRB ratio: 0.0
-Mode: GGHP
-Estimated accuracy: 1

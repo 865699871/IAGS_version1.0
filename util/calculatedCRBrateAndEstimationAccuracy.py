@@ -189,171 +189,86 @@ def transformToAdjacency_for_scoj(file):
         return new_adjacency_list
 
 def estimatedAccuracyModel(CRB_ratio,mode_type):
-    if CRB_ratio == 0:
-        return 1
+
+    if mode_type == 'GMP':
+        acc = 0.6325 * CRB_ratio * CRB_ratio + 0.3116 * CRB_ratio
+    elif mode_type == 'GGHP':
+        acc = 0.5292 * CRB_ratio * CRB_ratio + 0.3669 * CRB_ratio
+    elif mode_type == 'MultiCopyGMP':
+        acc = 0.4310 * CRB_ratio * CRB_ratio + 0.5420 * CRB_ratio
+    elif mode_type == 'MultiCopyGGHP':
+        acc = 0.6217 * CRB_ratio * CRB_ratio + 0.2740 * CRB_ratio
     else:
-        if mode_type == 'GMP':
-            acc = -0.6095 * CRB_ratio * CRB_ratio - 0.3401 * CRB_ratio + 1.0072
-        elif mode_type == 'GGHP':
-            acc = -0.5456 * CRB_ratio * CRB_ratio - 0.3466 * CRB_ratio + 0.9948
-        elif mode_type == 'MultiCopyGMP':
-            acc = -0.85428 * CRB_ratio * CRB_ratio - 0.07805 * CRB_ratio + 0.98770
-        elif mode_type == 'MultiCopyGGHP':
-            acc = -0.84945 * CRB_ratio * CRB_ratio - 0.01042 * CRB_ratio + 0.95885
-        else:
-            acc = 0
-            print('input error')
-        return acc
+        acc = 0
+        print('input error')
+    return acc
 
-def statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancetsor_name,
-                                     speciesAndCopyList, outdir, model_type,
-                                     cutcycle = False, getCRBratio = False):
+
+def calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                           speciesAndCopyList, outdir, model_type):
     """
-    IAGS provides inferred ancestor evaluation function which contains three part.
-
-    Firstly, calculating ancestral adjacencies support table.
-    All species used for calculating this ancestor should first match with this ancestor by BMO integer programming formulations
-    and then counting the number of block adjacencies appeared in all species, respectively.
-
-    Secondly, ancestors may appear circular chromosomes.
-    Here, IAGS allows user to cut one adjacency in circular chromosomes with minimum number of support to make circular to strings.
-
-    Finally, IAGS calculates completely rearranged breakpoints ratio and obtains estimation accuracy by accuracy estimation function.
-
-    :param ancestor_file: block sequence file for inferred ancestor
-    :param ancestor_copy_number: target copy number of ancestor
-    :param ancetsor_name: ancestor name
+    All species should first match with this a target species by BMO integer programming formulations
+    Target species is a species with small copy number in input species.
+    (for example,
+    species 1 with copy number 4 and species 2 with 2, the target species is species 1.
+    species 1 and species 2 with both 2 copy number, then target species can be 1 or 2.)
+    Then, IAGS calculates completely rearranged breakpoints ratio and
+    obtains estimation accuracy by accuracy estimation function.
+    :param matching_target_file: block sequence file for inferred ancestor
+    :param matching_target_copy_number: target copy number of ancestor
+    :param matching_target_name: ancestor name
     :param speciesAndCopyList: all species block sequences file,target copy number and species name
     :param outdir: output directory
     :param model_type: model used for obtaining ancestor, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP
-    :param cutcycle: parameter for whether cut circular chromosomes
-    :param getCRBratio: parameter for whether calculated CRB ratio and estimation accuracy.
     """
     matchingFileList = []
-    speciesName = []
-    ancestormatchingFile = ''
     sumcopynumber = 0
-    # matching with ancestor
+    # matching with target species
     for i in speciesAndCopyList:
         sumcopynumber += i[1]
         mo = BlockMatchingOptimization(i[0],
-                                       ancestor_file,
+                                       matching_target_file,
                                        matching_dim1=i[1],
-                                       matching_dim2=ancestor_copy_number,
-                                       relation1=ancestor_copy_number / ancestor_copy_number,
-                                       relation2=i[1] / ancestor_copy_number)
+                                       matching_dim2=matching_target_copy_number,
+                                       relation1=matching_target_copy_number / matching_target_copy_number,
+                                       relation2=i[1] / matching_target_copy_number)
         mo.optimization()
         mo.matching_relation()
-        output_sequence_file_list = [outdir + i[2]+'.ev.relabel.block',
-                                     outdir + ancetsor_name + '.ev.relabel.block']
+        output_sequence_file_list = [outdir + i[2] +'.ev.relabel.block',
+                                     outdir + matching_target_name + '.ev.relabel.block']
         mo.out_relabel_sequence(output_sequence_file_list)
         matchingFileList.append(outdir + i[2]+'.ev.relabel.block')
-        speciesName.append(i[2])
-        ancestormatchingFile = outdir + ancetsor_name + '.ev.relabel.block'
 
-    # calculating ancestral adjacencies support table
-    ev = StatisticsAdjacencies(ancestormatchingFile,
-                    matchingFileList,
-                    ancetsor_name, speciesName)
-    ev.out_ev_file(outdir + 'ev_'+ancetsor_name+'.xls')
-    ev_table = pd.read_csv(outdir + 'ev_'+ancetsor_name+'.xls',sep='\t',index_col=0)
-    adjs = ev_table.index.tolist()
-    ev_table = np.asarray(ev_table)
-    adjs_weight = {}
-    for i in range(len(adjs)):
-        adjs_weight[adjs[i]] = np.sum(ev_table[i][1:])
 
-    # cut circular chromosomes
-    if cutcycle == True:
-        ancestorSequence = readSequence(ancestormatchingFile)
-        stringSequence = []
-        cycleSequence = []
-        for i in ancestorSequence:
-            if i[0] == 's':
-                stringSequence.append(i)
+    endpoints = {}
+    for i in matchingFileList:
+        adj = transformToAdjacency_for_scoj(i)
+        for j in adj:
+            endpoint1 = j.split('@')[0]
+            endpoint2 = j.split('@')[1]
+            if endpoint1 not in endpoints.keys():
+                endpoints[endpoint1] = [endpoint2]
             else:
-                cycleSequence.append(i)
-        for i in cycleSequence:
-            adjacency_list = []
-            last = ''
-            start = ''
-            sequence = i[1:]
-            for j in range(len(sequence)):
-                if j == 0:
-                    if sequence[j].startswith('-'):
-                        last = sequence[j][1:] + 'a'
-                        start = sequence[j][1:] + 'b'
-                    else:
-                        last = sequence[j] + 'b'
-                        start = sequence[j] + 'a'
-                else:
-                    if sequence[j].startswith('-'):
-                        adjacency_list.append([last, sequence[j][1:] + 'b'])
-                        last = sequence[j][1:] + 'a'
-                    else:
-                        adjacency_list.append([last, sequence[j] + 'a'])
-                        last = sequence[j] + 'b'
-            adjacency_list.append([last, start])
-            # print(adjacency_list)
-            new_adjacency_list = []
-            minkey = ''
-            minweight = 100000
-            startpoint = ''
-            endpoint = ''
-            for j in adjacency_list:
-                key = sorted(j)
-                key = key[0] + '@' + key[1]
-                if adjs_weight[key] < minweight:
-                    minweight = adjs_weight[key]
-                    minkey = key
-            for j in adjacency_list:
-                key = sorted(j)
-                key = key[0] + '@' + key[1]
-                if key != minkey:
-                    new_adjacency_list.append(j)
-                else:
-                    new_adjacency_list.append(['$',j[0]])
-                    startpoint = j[0]
-                    new_adjacency_list.append(['$',j[1]])
-                    endpoint = j[1]
-            path = reassembly(new_adjacency_list,startpoint,endpoint)
-            stringSequence.append(['s']+path)
-        outSequence(stringSequence,outdir + ancetsor_name + '.cutcycle.block')
+                if endpoint2 not in endpoints[endpoint1]:
+                    endpoints[endpoint1].append(endpoint2)
 
+            if endpoint2 not in endpoints.keys():
+                endpoints[endpoint2] = [endpoint1]
+            else:
+                if endpoint1 not in endpoints[endpoint2]:
+                    endpoints[endpoint2].append(endpoint1)
+    rate = 0
 
-    # calculated CRB ratio and estimation accuracy.
-    if getCRBratio == True:
-        endpoints = {}
-        for i in matchingFileList:
-            adj = transformToAdjacency_for_scoj(i)
-            for j in adj:
-                endpoint1 = j.split('@')[0]
-                endpoint2 = j.split('@')[1]
-                if endpoint1 not in endpoints.keys():
-                    endpoints[endpoint1] = [endpoint2]
-                else:
-                    if endpoint2 not in endpoints[endpoint1]:
-                        endpoints[endpoint1].append(endpoint2)
+    for i in endpoints.keys():
+        if i == '$':
+            continue
+        if len(endpoints[i]) == sumcopynumber/matching_target_copy_number:
 
-                if endpoint2 not in endpoints.keys():
-                    endpoints[endpoint2] = [endpoint1]
-                else:
-                    if endpoint1 not in endpoints[endpoint2]:
-                        endpoints[endpoint2].append(endpoint1)
-        rate = 0
-
-        for i in endpoints.keys():
-            if i == '$':
-                continue
-            if len(endpoints[i]) == sumcopynumber/ancestor_copy_number:
-                rate += 1
-
-        rate = round(rate / (len(endpoints.keys()) - 1), 4)
-        acc = estimatedAccuracyModel(rate, model_type)
-        ev_file = open(outdir + 'ev.txt','w')
-        ev_file.write('CRB ratio: ' + str(rate) + '\n')
-        ev_file.write('Mode: ' + model_type + '\n')
-        ev_file.write('Estimated accuracy: ' + str(acc) + '\n')
-        ev_file.close()
-
-
+            rate += 1
+    rate = round(rate / (len(endpoints.keys()) - 1), 4)
+    acc = estimatedAccuracyModel(rate, model_type)
+    ev_file = open(outdir + 'ev.txt','w')
+    ev_file.write('CRB ratio: ' + str(rate*100) +'%' + '\n')
+    ev_file.write('Mode: ' + model_type + '\n')
+    ev_file.write('Estimated acc: ' + str(100-acc*100)+'%' + '\n')
+    ev_file.close()

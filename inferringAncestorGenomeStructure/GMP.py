@@ -177,8 +177,7 @@ class GMP:
             self.__m.addConstrs((ancestor[i] - ancestor[self.__vector_symmetry_value[i]] == 0
                                  for i in range(self.__variable_number)), name='symmetry')
             self.__m.addConstrs((gp.quicksum(ancestor[j + self.__vector_range_value[i + 1][0]]
-                                             for j in range(
-                self.__vector_range_value[i + 1][1] - self.__vector_range_value[i + 1][0])) == self.__target_copy_number
+                                             for j in range(self.__vector_range_value[i + 1][1] - self.__vector_range_value[i + 1][0])) == self.__target_copy_number
                                  for i in range(self.__dim - 1)), name='row_unique')
             self.__m.addConstrs((ancestor[i] == 0
                                  for i in self.__diagonal_value), name='Diagonal')

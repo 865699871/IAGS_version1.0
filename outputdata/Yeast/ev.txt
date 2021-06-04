@@ -1,3 +1,3 @@
-CRB ratio: 0.0069
+CRB ratio: 0.69%
 Mode: GGHP
-Estimated accuracy: 0.992382483984
+Estimated acc: 99.7443194788%

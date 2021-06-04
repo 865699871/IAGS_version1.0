@@ -1,5 +1,5 @@
 from models.GMPmodel import GMPmodel
-from util.statisticsAdjacency import statisticsAdjacenciesInformation
+from util.calculatedCRBrateAndEstimationAccuracy import calculatedCRBrateAndEstimationAccuracy
 """
 Inferring ancestor species for Brassica using GMP model
 result in outdutdata/Brassica
@@ -18,13 +18,14 @@ GMPmodel(species_file_list=species_block_filelist,
          ancestor_name=ancestor_name)
 
 # Evaluation
-ancestor_file = outdir + ancestor_name + '.block'
-ancestor_copy_number = 1
-speciesAndCopyList = [[workdir + 'Boleracea.final.block',ancestor_copy_number,'B.oleracea'],
-                      [workdir + 'Brapa.final.block',ancestor_copy_number,'B.rapa'],
-                      [workdir + 'Bnigra.final.block',ancestor_copy_number,'B.nigra']]
+matching_target_file = workdir + 'Boleracea.final.block'
+matching_target_copy_number = 1
+matching_target_name = 'B.oleracea'
+
+speciesAndCopyList = [[workdir + 'Boleracea.final.block',1,'B.oleracea'],
+                      [workdir + 'Brapa.final.block',1,'B.rapa'],
+                      [workdir + 'Bnigra.final.block',1,'B.nigra']]
 
 model_type = 'GMP'
-statisticsAdjacenciesInformation(ancestor_file, ancestor_copy_number, ancestor_name,
-                                 speciesAndCopyList, outdir, model_type,
-                                 cutcycle = False, getCRBratio = True)
+calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
+                                       speciesAndCopyList, outdir, model_type)

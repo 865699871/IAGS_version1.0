@@ -1,3 +1,3 @@
-CRB ratio: 0.1667
+CRB ratio: 13.889999999999999%
 Mode: MultiCopyGGHP
-Estimated accuracy: 0.9335077133895
+Estimated acc: 94.9946811343%

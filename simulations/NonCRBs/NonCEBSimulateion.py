@@ -2,6 +2,28 @@ import random
 import copy
 import numpy as np
 import pandas as pd
+import os
+
+from models.MultiGMPmodel import MultiCopyGMPmodel
+from models.MultiGGHPmodel import MultiCopyGGHPmodel
+from models.GGHPmodel import GGHPmodel
+from util.calculateFissionsAndFusions import calculateFissionAndFussions
+
+def readSequence(file):
+    chr = []
+    with open(file,'r') as rf:
+        while True:
+            line = rf.readline()[:-2]
+            if not line:
+                break
+            itemset = line.split(' ')
+            header = itemset[0]
+            new_itemset = [header]
+            for i in itemset[1:]:
+                item = i.split('_')
+                new_itemset.append(item[0])
+            chr.append(new_itemset)
+    return chr
 
 def outSequence(sequence,outfile):
     outfile = open(outfile,'w')
@@ -313,7 +335,7 @@ def simulateNoCRB(workdir):
     for i in save_final_species_adjacencies:
         copy_count = 1
         outfile = workdir + 'species.sequence.' + str(species_count)
-        print(outfile)
+
         outfile = open(outfile,'w')
         for j in i:
             filter_tel2tel = []
@@ -366,9 +388,170 @@ def simulateNoCRB(workdir):
         outfile.close()
         species_count += 1
 
-workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/simulations/NonCRBs/'
+
+def doubled(infile,outfile):
+    outfile = open(outfile,'w')
+    sequence = []
+    with open(infile,'r') as f:
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            sequence.append(line)
+    for i in sequence:
+        outfile.write(i)
+    for i in sequence:
+        outfile.write(i)
+
+
+workdir = 'D:/InferAncestorGenome/realData/IAGS_version1.0/simulations/NonCRBs/inferring/repeat/'
 # simulate No CRB species
-simulateNoCRB(workdir)
+if not os.path.exists(workdir):
+    os.makedirs(workdir)
+resultfile = open(workdir + 'result.xls', 'w')
+resultfile.write('Repeat\tAncestor\tFissions\tFusions\n')
+for i in range(200):
+    repeatdir = workdir + str(i+1) + '/'
+    if not os.path.exists(repeatdir):
+        os.makedirs(repeatdir)
+    simulateNoCRB(repeatdir)
+    filelist = ['species.sequence.1', 'species.sequence.2', 'species.sequence.3',
+                'species.sequence.4', 'species.sequence.5', 'species.sequence.6',
+                'species.sequence.7', 'species.sequence.8', 'species.sequence.9']
+    for j in filelist:
+        sequence = readSequence(repeatdir + j)
+        outSequence(sequence, repeatdir + j + '.noBar')
+    """
+    Ancestor 8: Multi-copy GGHP model
+    """
+    dup_child_file = repeatdir + 'species.sequence.9.noBar'
+    outgroup_file = repeatdir + 'species.sequence.7.noBar'
+    outAncestor8dir = repeatdir + 'Ancestor8/'
+    if not os.path.exists(outAncestor8dir):
+        os.makedirs(outAncestor8dir)
+
+    dup_copy_number = 8
+    out_copy_number = 4
+    ancestor_target_copy_number = 4
+    ancestor_name = 'Ancestor8'
+    MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor8dir,
+                       ancestor_name, dup_copy_number, out_copy_number,
+                       ancestor_target_copy_number)
+
+    ancestor_file = outAncestor8dir + ancestor_name + '.block'
+
+    fissions, fusions = calculateFissionAndFussions(ancestor_file,
+                                                    repeatdir + 'species.sequence.8.noBar',
+                                                    ancestor_target_copy_number, ancestor_target_copy_number,
+                                                    outAncestor8dir)
+    resultfile.write(str(i+1)+'\tAncestor8\t' + str(fissions) + '\t' + str(fusions) + '\n')
+
+    """
+    Ancestor 5: Multi-copy GGHP model
+    """
+    dup_child_file = repeatdir + 'species.sequence.7.noBar'
+    outgroup_file = repeatdir + 'species.sequence.4.noBar'
+    outAncestor5dir = repeatdir + 'Ancestor5/'
+    if not os.path.exists(outAncestor5dir):
+        os.makedirs(outAncestor5dir)
+    dup_copy_number = 4
+    out_copy_number = 2
+    ancestor_target_copy_number = 2
+    ancestor_name = 'Ancestor5'
+    MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor5dir,
+                       ancestor_name, dup_copy_number, out_copy_number,
+                       ancestor_target_copy_number)
+
+    ancestor_file = outAncestor5dir + ancestor_name + '.block'
+
+    fissions, fusions = calculateFissionAndFussions(ancestor_file,
+                                                    repeatdir + 'species.sequence.5.noBar',
+                                                    ancestor_target_copy_number, ancestor_target_copy_number,
+                                                    outAncestor5dir)
+    resultfile.write(str(i+1)+'\tAncestor5\t' + str(fissions) + '\t' + str(fusions) + '\n')
+
+    """
+    Ancestor 6: Multi-copy GMP model
+    """
+    outAncestor6dir = repeatdir + 'Ancestor6/'
+    if not os.path.exists(outAncestor6dir):
+        os.makedirs(outAncestor6dir)
+    doubled(outAncestor5dir + 'Ancestor5.block', outAncestor6dir + 'Ancestor5.doubled.block')
+    species_file_list = [repeatdir + 'species.sequence.7.noBar',
+                         outAncestor8dir + 'Ancestor8.block',
+                         outAncestor6dir + 'Ancestor5.doubled.block']
+    guided_species_for_matching = repeatdir + 'species.sequence.7.noBar'
+    ancestor_target_copy_number = 4
+    ancestor_name = 'Ancestor6'
+    MultiCopyGMPmodel(species_file_list, outAncestor6dir, guided_species_for_matching,
+                      ancestor_name, ancestor_target_copy_number)
+
+    ancestor_file = outAncestor6dir + ancestor_name + '.block'
+
+    fissions, fusions = calculateFissionAndFussions(ancestor_file,
+                                                    repeatdir + 'species.sequence.6.noBar',
+                                                    ancestor_target_copy_number, ancestor_target_copy_number,
+                                                    outAncestor6dir)
+    resultfile.write(str(i+1)+'\tAncestor6\t' + str(fissions) + '\t' + str(fusions) + '\n')
+
+    """
+    Ancestor 2: GGHP model
+    """
+    dup_child_file = repeatdir + 'species.sequence.4.noBar'
+    outgroup_file = repeatdir + 'species.sequence.1.noBar'
+    outAncestor2dir = repeatdir + 'Ancestor2/'
+    if not os.path.exists(outAncestor2dir):
+        os.makedirs(outAncestor2dir)
+    dup_copy_number = 2
+    out_copy_number = 1
+    ancestor_target_copy_number = 1
+    ancestor_name = 'Ancestor2'
+    GGHPmodel(dup_child_file=dup_child_file,
+              outgroup_file=outgroup_file,
+              outdir=outAncestor2dir,
+              ancestor_name=ancestor_name,
+              dup_copy_number=dup_copy_number,
+              out_copy_number=out_copy_number)
+
+    ancestor_file = outAncestor2dir + ancestor_name + '.block'
+
+    fissions, fusions = calculateFissionAndFussions(ancestor_file,
+                                                    repeatdir + 'species.sequence.2.noBar',
+                                                    ancestor_target_copy_number, ancestor_target_copy_number,
+                                                    outAncestor2dir)
+    resultfile.write(str(i+1)+'\tAncestor2\t' + str(fissions) + '\t' + str(fusions) + '\n')
+
+    """
+    Ancestor 3: Multi-copy GMP model
+    """
+    outAncestor3dir = repeatdir + 'Ancestor3/'
+    outAncestor2dir = repeatdir + 'Ancestor2/'
+    if not os.path.exists(outAncestor3dir):
+        os.makedirs(outAncestor3dir)
+    doubled(outAncestor2dir + 'Ancestor2.block', outAncestor3dir + 'Ancestor2.doubled.block')
+    species_file_list = [repeatdir + 'species.sequence.4.noBar',
+                         outAncestor5dir + 'Ancestor5.block',
+                         outAncestor3dir + 'Ancestor2.doubled.block']
+    guided_species_for_matching = repeatdir + 'species.sequence.4.noBar'
+    ancestor_target_copy_number = 2
+    ancestor_name = 'Ancestor3'
+    MultiCopyGMPmodel(species_file_list, outAncestor3dir, guided_species_for_matching,
+                      ancestor_name, ancestor_target_copy_number)
+
+    ancestor_file = outAncestor3dir + ancestor_name + '.block'
+
+    fissions, fusions = calculateFissionAndFussions(ancestor_file,
+                                                    repeatdir + 'species.sequence.3.noBar',
+                                                    ancestor_target_copy_number, ancestor_target_copy_number,
+                                                    outAncestor3dir)
+    resultfile.write(str(i+1)+'\tAncestor3\t' + str(fissions) + '\t' + str(fusions) + '\n')
+    resultfile.flush()
+
+resultfile.close()
+
+
+
+
 
 
 

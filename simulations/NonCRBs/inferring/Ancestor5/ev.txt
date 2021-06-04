@@ -1,3 +1,0 @@
-CRB ratio: 0.0
-Mode: MultiCopyGGHP
-Estimated accuracy: 1

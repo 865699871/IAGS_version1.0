@@ -1,3 +1,0 @@
-CRB ratio: 0.0
-Mode: MultiCopyGMP
-Estimated accuracy: 1
