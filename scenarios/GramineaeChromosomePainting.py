@@ -106,7 +106,7 @@ plotChrsRearrangement(block_length_file,
 Ancestor 1 -> Ancestor 4
 """
 rearranged_species_block_file = path + '/IAGS_version1.0/' \
-                                'outputdata/Gramineae/Ancestor4/Ancestor4.cutcycle.block'
+                                'outputdata/Gramineae/Ancestor4/Ancestor4.block'
 rearranged_species_name = 'Ancestor4'
 rearranged_species_copy_number = 2
 

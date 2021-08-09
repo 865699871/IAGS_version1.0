@@ -124,7 +124,7 @@ Ancestor 3 -> Ancestor 4
 ancestor4_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
 ancestor3_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor3/'
 
-descendant_file = ancestor4_block_sequence_dir + 'Ancestor4.cutcycle.block'
+descendant_file = ancestor4_block_sequence_dir + 'Ancestor4.block'
 ancestor_file = ancestor3_block_sequence_dir + 'Ancestor3.block'
 
 descendant_copy_number = 2
@@ -144,7 +144,7 @@ species_block_sequence_dir = path + '/IAGS_version1.0/inputdata/Gramineae/'
 ancestor4_block_sequence_dir = path + '/IAGS_version1.0/outputdata/Gramineae/Ancestor4/'
 
 descendant_file = species_block_sequence_dir + 'Zmays.final.block'
-ancestor_file = ancestor4_block_sequence_dir + 'Ancestor4.cutcycle.block'
+ancestor_file = ancestor4_block_sequence_dir + 'Ancestor4.block'
 
 descendant_copy_number = 4
 ancestor_copy_number = 2

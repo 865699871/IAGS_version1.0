@@ -29,13 +29,13 @@ ancestor_name = 'Ancestor4'
 MultiCopyGGHPmodel(dup_child_file, outgroup_file, outAncestor4dir,
                    ancestor_name, dup_copy_number, out_copy_number, ancestor_target_copy_number)
 
-speciesAndCopyList = [
-    [workdir + 'Zmays.final.block',dup_copy_number,'Z.mays'],
-    [workdir + 'Sbicolor.final.block',out_copy_number,'S.bicolor']
-]
-cutCircularChromosomes(outAncestor4dir + 'Ancestor4.block',
-                       ancestor_target_copy_number,
-                       ancestor_name,speciesAndCopyList,outAncestor4dir)
+# speciesAndCopyList = [
+#     [workdir + 'Zmays.final.block',dup_copy_number,'Z.mays'],
+#     [workdir + 'Sbicolor.final.block',out_copy_number,'S.bicolor']
+# ]
+# cutCircularChromosomes(outAncestor4dir + 'Ancestor4.block',
+#                        ancestor_target_copy_number,
+#                        ancestor_name,speciesAndCopyList,outAncestor4dir)
 
 # Evaluation
 matching_target_file = workdir + 'Sbicolor.final.block'
@@ -48,7 +48,7 @@ speciesAndCopyList = [
 ]
 
 model_type = 'MultiCopyGGHP'
-# cut circular chromosomes
+
 calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target_copy_number, matching_target_name,
                                        speciesAndCopyList, outAncestor4dir, model_type)
 
