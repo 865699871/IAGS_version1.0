@@ -214,9 +214,9 @@ def calculatedCRBrateAndEstimationAccuracy(matching_target_file, matching_target
     species 1 and species 2 with both 2 copy number, then target species can be 1 or 2.)
     Then, IAGS calculates completely rearranged breakpoints ratio and
     obtains estimation accuracy by accuracy estimation function.
-    :param matching_target_file: block sequence file for inferred ancestor
-    :param matching_target_copy_number: target copy number of ancestor
-    :param matching_target_name: ancestor name
+    :param matching_target_file: block sequence file for target species
+    :param matching_target_copy_number: target copy number of target species
+    :param matching_target_name: target species name
     :param speciesAndCopyList: all species block sequences file,target copy number and species name
     :param outdir: output directory
     :param model_type: model used for obtaining ancestor, including GMP, GGHP, MultiCopyGMP and MultiCopyGGHP

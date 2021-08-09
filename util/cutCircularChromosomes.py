@@ -190,7 +190,7 @@ def transformToAdjacency_for_scoj(file):
 
 
 
-def cutCircularChromosomes(ancestor_file, ancestor_copy_number, ancetsor_name,
+def cutCircularChromosomes(ancestor_file, ancestor_copy_number, ancestor_name,
                            speciesAndCopyList, outdir):
     """
     Firstly, calculating ancestral adjacencies support table.
@@ -200,7 +200,7 @@ def cutCircularChromosomes(ancestor_file, ancestor_copy_number, ancetsor_name,
     Here, IAGS allows user to cut one adjacency in circular chromosomes with minimum number of support to make circular to strings.
     :param ancestor_file: block sequence file for inferred ancestor
     :param ancestor_copy_number: target copy number of ancestor
-    :param ancetsor_name: ancestor name
+    :param ancestor_name: ancestor name
     :param speciesAndCopyList: all species block sequences file,target copy number and species name
     :param outdir: output directory
     """
@@ -220,18 +220,18 @@ def cutCircularChromosomes(ancestor_file, ancestor_copy_number, ancetsor_name,
         mo.optimization()
         mo.matching_relation()
         output_sequence_file_list = [outdir + i[2]+'.ev.relabel.block',
-                                     outdir + ancetsor_name + '.ev.relabel.block']
+                                     outdir + ancestor_name + '.ev.relabel.block']
         mo.out_relabel_sequence(output_sequence_file_list)
         matchingFileList.append(outdir + i[2]+'.ev.relabel.block')
         speciesName.append(i[2])
-        ancestormatchingFile = outdir + ancetsor_name + '.ev.relabel.block'
+        ancestormatchingFile = outdir + ancestor_name + '.ev.relabel.block'
 
     # calculating ancestral adjacencies support table
     ev = StatisticsAdjacencies(ancestormatchingFile,
                     matchingFileList,
-                    ancetsor_name, speciesName)
-    ev.out_ev_file(outdir + 'ev_'+ancetsor_name+'.xls')
-    ev_table = pd.read_csv(outdir + 'ev_'+ancetsor_name+'.xls',sep='\t',index_col=0)
+                    ancestor_name, speciesName)
+    ev.out_ev_file(outdir + 'ev_'+ancestor_name+'.xls')
+    ev_table = pd.read_csv(outdir + 'ev_'+ancestor_name+'.xls',sep='\t',index_col=0)
     adjs = ev_table.index.tolist()
     ev_table = np.asarray(ev_table)
     adjs_weight = {}
@@ -292,5 +292,5 @@ def cutCircularChromosomes(ancestor_file, ancestor_copy_number, ancetsor_name,
                 endpoint = j[1]
         path = reassembly(new_adjacency_list,startpoint,endpoint)
         stringSequence.append(['s']+path)
-    outSequence(stringSequence,outdir + ancetsor_name + '.cutcycle.block')
+    outSequence(stringSequence,outdir + ancestor_name + '.cutcycle.block')
 
