@@ -1,0 +1,10 @@
+DescendantSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Brapa.final.block
+DescendantSpeciesCopyNumber:
+1
+AncestorSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_GMP/Brassica.block
+AncestorSpeciesCopyNumber:
+1
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_GMP/

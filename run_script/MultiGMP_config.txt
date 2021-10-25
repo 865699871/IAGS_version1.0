@@ -1,0 +1,13 @@
+Species:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/Bdistachyon.final.block
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/Telongatum.final.block
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/Osativa.final.block
+End
+GuidedSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Gramineae/Bdistachyon.final.block
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_MultiGMP/
+AncestorName:
+Ancestor2
+AncestorCopyNumber:
+2

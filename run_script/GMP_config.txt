@@ -1,0 +1,9 @@
+Species:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Boleracea.final.block
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Brapa.final.block
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Bnigra.final.block
+End
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_GMP/
+AncestorName:
+Brassica

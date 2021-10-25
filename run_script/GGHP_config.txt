@@ -1,0 +1,12 @@
+DuplicatedChildSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Papaver/Psomniferum.final.block
+DuplicatedCopyNumber:
+2
+OutgroupSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Papaver/Prhoeas.final.block
+OutgroupCopyNumber:
+1
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_GGHP/
+AncestorName:
+Ancestor1

@@ -1,0 +1,15 @@
+SpeciesCopyNumberNameList:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Boleracea.final.block 1 B.oleracea
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Brapa.final.block 1 B.rapa
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Bnigra.final.block 1 B.nigra
+End
+MatchingTargetSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Brassica/Boleracea.final.block
+MatchingTargetSpeciesCopyNumber:
+1
+MatchingTargetSpeciesName:
+B.oleracea
+ModelType:
+GMP
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_GMP/

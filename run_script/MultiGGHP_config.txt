@@ -1,0 +1,14 @@
+DuplicatedChildSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Papaver/Psetigerum.final.block
+DuplicatedCopyNumber:
+4
+OutgroupSpecies:
+D:/InferAncestorGenome/realData/IAGS_version1.0/inputdata/Papaver/Psomniferum.final.block
+OutgroupCopyNumber:
+2
+Outdir:
+D:/InferAncestorGenome/realData/IAGS_version1.0/run_script/output/run_MultiGGHP/
+AncestorName:
+Ancestor3
+AncestorCopyNumber:
+2
